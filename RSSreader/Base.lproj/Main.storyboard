@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bXg-62-QFe">
+    <device id="ipad9_7" orientation="portrait" layout="fullscreen" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Title-->
+        <scene sceneID="dhb-pn-xnP">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="Q0J-wP-Rp4" customClass="ListViewController" customModule="RSSreader" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="RCb-bZ-EWQ">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="articleCell" textLabel="crB-5K-kpJ" style="IBUITableViewCellStyleDefault" id="6ub-dj-Zcf">
+                                <rect key="frame" x="0.0" y="28" width="768" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6ub-dj-Zcf" id="ivW-Ox-GQE">
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="記事タイトル" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="crB-5K-kpJ">
+                                            <rect key="frame" x="20" y="0.0" width="728" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="vkn-Kq-PR6" kind="show" identifier="toArticle" id="DuZ-oR-tKZ"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Title" id="qZf-SX-D35">
+                        <barButtonItem key="leftBarButtonItem" title="ログイン画面に戻る" id="bmm-Vl-TRF">
+                            <connections>
+                                <action selector="goBackLogin:" destination="Q0J-wP-Rp4" id="uC0-hF-ce5"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="設定" id="W0f-he-U4t">
+                            <connections>
+                                <action selector="settingAction:" destination="Q0J-wP-Rp4" id="riW-sT-hwg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableTitle" destination="qZf-SX-D35" id="38f-Y7-BdV"/>
+                        <segue destination="Ejz-dU-rTq" kind="show" identifier="toLogin" id="Nfh-l2-ETR"/>
+                        <segue destination="wjq-Sg-eoG" kind="show" identifier="toSetting" id="MDB-4Q-Mee"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cd6-FP-aL5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2539.84375" y="841.40625"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="Hid-LD-YVJ">
+            <objects>
+                <collectionViewController modalPresentationStyle="fullScreen" id="qIN-jw-S0B" customClass="CollectionViewController" customModule="RSSreader" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Joc-0U-3Px">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7zD-B2-gqV">
+                            <size key="itemSize" width="180" height="240"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="articleCell2" id="j9Q-1C-mBs">
+                                <rect key="frame" x="0.0" y="0.0" width="180" height="240"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Jx1-BI-6xN">
+                                    <rect key="frame" x="0.0" y="0.0" width="180" height="240"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="I6P-70-V6c">
+                                            <rect key="frame" x="8" y="8" width="164" height="128"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4OS-A1-bHL">
+                                            <rect key="frame" x="8" y="144" width="164" height="88"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="88" id="dG0-Sf-8v8"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="I6P-70-V6c" firstAttribute="leading" secondItem="4OS-A1-bHL" secondAttribute="leading" id="GfG-4g-YPt"/>
+                                        <constraint firstItem="I6P-70-V6c" firstAttribute="trailing" secondItem="Jx1-BI-6xN" secondAttribute="trailingMargin" id="Lw7-pH-exd"/>
+                                        <constraint firstItem="I6P-70-V6c" firstAttribute="leading" secondItem="Jx1-BI-6xN" secondAttribute="leadingMargin" id="PCj-aO-5YV"/>
+                                        <constraint firstItem="I6P-70-V6c" firstAttribute="top" secondItem="Jx1-BI-6xN" secondAttribute="topMargin" id="aoo-LC-HcJ"/>
+                                        <constraint firstItem="4OS-A1-bHL" firstAttribute="bottom" secondItem="Jx1-BI-6xN" secondAttribute="bottomMargin" id="lZF-pP-Mi8"/>
+                                        <constraint firstItem="I6P-70-V6c" firstAttribute="trailing" secondItem="4OS-A1-bHL" secondAttribute="trailing" id="mg6-xV-9A2"/>
+                                        <constraint firstItem="4OS-A1-bHL" firstAttribute="top" secondItem="I6P-70-V6c" secondAttribute="bottom" constant="8" id="tnJ-4j-VBf"/>
+                                    </constraints>
+                                </collectionViewCellContentView>
+                                <size key="customSize" width="180" height="240"/>
+                            </collectionViewCell>
+                        </cells>
+                    </collectionView>
+                    <navigationItem key="navigationItem" title="Title" id="ha3-mB-wpd">
+                        <barButtonItem key="leftBarButtonItem" title="ログイン画面に戻る" id="jbk-gu-2la">
+                            <connections>
+                                <action selector="goBackLogin:" destination="qIN-jw-S0B" id="yyX-H8-Me1"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="設定" id="0zP-1P-uTJ">
+                            <connections>
+                                <action selector="toSetting:" destination="qIN-jw-S0B" id="52o-MN-Fyk"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="colView" destination="Joc-0U-3Px" id="nmV-db-Jff"/>
+                        <outlet property="tableTitle" destination="ha3-mB-wpd" id="7CR-O9-VcK"/>
+                        <segue destination="vkn-Kq-PR6" kind="show" identifier="toArticle" id="tVy-CH-Tfp"/>
+                        <segue destination="wjq-Sg-eoG" kind="show" identifier="toSetting" id="obI-fm-MNE"/>
+                        <segue destination="Ejz-dU-rTq" kind="show" identifier="toLogin" id="JtL-lu-yTZ"/>
+                    </connections>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6se-Mo-OGp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2536.71875" y="1572.65625"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="Xgn-c4-WXg">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="Ejz-dU-rTq" customClass="LoginViewController" customModule="RSSreader" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7w5-Y5-Qxw">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ログインID：" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gSv-RM-xw4">
+                                <rect key="frame" x="50" y="234" width="150" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" fixedFrame="YES" text="パスワード：" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AiF-ud-NY6">
+                                <rect key="frame" x="50" y="345" width="150" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c2r-DT-vBc">
+                                <rect key="frame" x="250" y="233" width="170" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Waf-Td-8Uj">
+                                <rect key="frame" x="166" y="511" width="82" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="ログイン"/>
+                                <connections>
+                                    <action selector="loginAction:" destination="Ejz-dU-rTq" eventType="touchUpInside" id="iYn-l5-CWe"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VC4-cf-Xec">
+                                <rect key="frame" x="250" y="339" width="170" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Waf-Td-8Uj" firstAttribute="top" secondItem="7w5-Y5-Qxw" secondAttribute="top" constant="511" id="Koj-3m-jyG"/>
+                            <constraint firstItem="Waf-Td-8Uj" firstAttribute="leading" secondItem="KlI-JA-7B1" secondAttribute="leading" constant="166" id="swY-eG-dnz"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="KlI-JA-7B1"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="RnJ-Ql-NBc">
+                        <barButtonItem key="rightBarButtonItem" title="新規登録" id="pUn-kO-lFL">
+                            <connections>
+                                <action selector="registrationAction:" destination="Ejz-dU-rTq" id="f1m-xQ-c3n"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="passwordField" destination="VC4-cf-Xec" id="XaR-5x-k5C"/>
+                        <outlet property="usernameField" destination="c2r-DT-vBc" id="a62-hW-4yo"/>
+                        <segue destination="aFi-Yr-3va" kind="show" identifier="toRegistration" id="Xtt-l3-zrt"/>
+                        <segue destination="Q0J-wP-Rp4" kind="show" identifier="toTableList" id="VO1-hE-LCe"/>
+                        <segue destination="qIN-jw-S0B" kind="show" identifier="toCollectionList" id="3P1-zA-lgc"/>
+                        <segue destination="cJB-vd-24o" kind="show" identifier="toRSSSelect" id="L0N-wu-aUu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ve1-BL-0CI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1728.90625" y="109.5703125"/>
+        </scene>
+        <!--設定-->
+        <scene sceneID="fcX-4q-0D9">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="wjq-Sg-eoG" customClass="ConfigViewController" customModule="RSSreader" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Iho-M6-EPP">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Zcn-kZ-9rX">
+                                <rect key="frame" x="0.0" y="50" width="768" height="974"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="settingCell" textLabel="gi8-fA-p7x" style="IBUITableViewCellStyleDefault" id="p56-wE-BPQ">
+                                        <rect key="frame" x="0.0" y="28" width="768" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="p56-wE-BPQ" id="ryW-WV-dhU">
+                                            <rect key="frame" x="0.0" y="0.0" width="768" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gi8-fA-p7x">
+                                                    <rect key="frame" x="15" y="0.0" width="738" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="wjq-Sg-eoG" id="XjU-s2-5kZ"/>
+                                    <outlet property="delegate" destination="wjq-Sg-eoG" id="CEp-Ck-mJ9"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="RWL-qW-gdB"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="設定" id="HVV-ix-kAg">
+                        <barButtonItem key="leftBarButtonItem" title="記事一覧に戻る" id="boQ-ha-C9v">
+                            <connections>
+                                <action selector="backList:" destination="wjq-Sg-eoG" id="CQ9-8D-qr1"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <segue destination="6f8-86-bMr" kind="show" identifier="toDisplaySetting" id="FN6-Le-CQt"/>
+                        <segue destination="4GP-Yj-uh0" kind="show" identifier="toIntervalSetting" id="cIw-Kt-jmo"/>
+                        <segue destination="7G4-Hr-acG" kind="show" identifier="toSubManaSetting" id="4Oh-oW-MBO"/>
+                        <segue destination="I0j-Nt-6pt" kind="show" identifier="toFontSetting" id="Mxm-2h-9lG"/>
+                        <segue destination="Q0J-wP-Rp4" kind="show" identifier="toBackTable" id="sIq-qZ-bdX"/>
+                        <segue destination="qIN-jw-S0B" kind="show" identifier="toBackCollection" id="nHw-aE-VYW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YrW-Nm-Sux" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3306.25" y="109.5703125"/>
+        </scene>
+        <!--一覧画面の表示切り替え 設定-->
+        <scene sceneID="y9R-v6-r2Z">
+            <objects>
+                <viewController id="6f8-86-bMr" customClass="DisplaySettingViewController" customModule="RSSreader" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2pO-iP-aXH">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fjf-1N-ONw">
+                                <rect key="frame" x="509" y="335" width="160" height="106"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="check_off"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oQe-vb-YM8">
+                                <rect key="frame" x="509" y="540" width="160" height="106"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="check_off"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="TableView" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j0X-cH-BUQ">
+                                <rect key="frame" x="108" y="358" width="215" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CollectionView" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WN1-Lv-91H">
+                                <rect key="frame" x="108" y="563" width="315" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Xv6-2D-oBT"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="一覧画面の表示切り替え 設定" id="cZs-dg-tv6"/>
+                    <connections>
+                        <outlet property="collectionButton" destination="oQe-vb-YM8" id="Rfl-3L-NX0"/>
+                        <outlet property="tableButton" destination="fjf-1N-ONw" id="fQM-ZE-lSM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dFF-8n-UaP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4546.875" y="109.5703125"/>
+        </scene>
+        <!--RSS取得間隔 設定-->
+        <scene sceneID="Iq1-iG-yLi">
+            <objects>
+                <viewController id="4GP-Yj-uh0" customClass="RSSIntervalViewController" customModule="RSSreader" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OhR-64-rTa">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JNr-zR-6CY">
+                                <rect key="frame" x="0.0" y="44" width="768" height="437"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gQj-uW-Qa2">
+                                <rect key="frame" x="354" y="542" width="61" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="決定"/>
+                                <connections>
+                                    <action selector="decisionAction:" destination="4GP-Yj-uh0" eventType="touchUpInside" id="FJC-zC-A95"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oGC-On-9Lo">
+                                <rect key="frame" x="285" y="767" width="213" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="一覧を更新する"/>
+                                <connections>
+                                    <action selector="updateAction:" destination="4GP-Yj-uh0" eventType="touchUpInside" id="FE8-Rj-4Iz"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="nTZ-p2-o8p"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="RSS取得間隔 設定" id="gxL-pZ-Akz"/>
+                    <connections>
+                        <outlet property="intervalPicker" destination="JNr-zR-6CY" id="wVv-8K-I0X"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BEP-QG-6rK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4538.28125" y="789.84375"/>
+        </scene>
+        <!--文字サイズ変更 設定-->
+        <scene sceneID="jRP-f6-xDR">
+            <objects>
+                <viewController id="I0j-Nt-6pt" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HEX-4i-x66">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="tDd-31-D16"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="文字サイズ変更 設定" id="Pf2-jq-uxO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AUt-AK-rMj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4538" y="2255"/>
+        </scene>
+        <!--購読RSS管理 設定-->
+        <scene sceneID="0pN-Jf-nc8">
+            <objects>
+                <viewController id="7G4-Hr-acG" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="F23-yr-qUe">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="GZE-1K-amW"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="購読RSS管理 設定" id="gTd-eu-aoR"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DgK-3S-TfE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4542" y="1518"/>
+        </scene>
+        <!--User Regist View Controller-->
+        <scene sceneID="rl0-15-rKF">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="aFi-Yr-3va" customClass="UserRegistViewController" customModule="RSSreader" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AAU-ig-3SG">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ユーザーID" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UHK-ZE-azG">
+                                <rect key="frame" x="128" y="290" width="182" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="パスワード" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="agG-Gt-nUl">
+                                <rect key="frame" x="149" y="458" width="152" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="daa-rq-AfZ">
+                                <rect key="frame" x="351" y="292" width="249" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UqO-bY-I3k">
+                                <rect key="frame" x="351" y="458" width="249" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="新規登録画面" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="32C-yQ-LwQ">
+                                <rect key="frame" x="265" y="104" width="182" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ogc-bY-Ojj">
+                                <rect key="frame" x="332" y="668" width="61" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="登録"/>
+                                <connections>
+                                    <action selector="registAction:" destination="aFi-Yr-3va" eventType="touchUpInside" id="0uW-4v-2dg"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="q7P-ad-ldk"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="LY8-KO-P4S"/>
+                    <connections>
+                        <outlet property="registID" destination="daa-rq-AfZ" id="eyJ-a5-dvO"/>
+                        <outlet property="registPass" destination="UqO-bY-I3k" id="qFi-r4-MbA"/>
+                        <segue destination="cJB-vd-24o" kind="show" identifier="toRSSSelect" id="3lU-pO-6Dv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YJ5-h2-uKW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="963.28125" y="842.578125"/>
+        </scene>
+        <!--選択フィード一覧-->
+        <scene sceneID="S7Q-Hk-aFg">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="cJB-vd-24o" customClass="RSSSelectViewController" customModule="RSSreader" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fDU-sj-ehM">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IXW-Ht-nkk">
+                                <rect key="frame" x="0.0" y="50" width="768" height="974"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="feedCell" textLabel="jN8-Od-QHH" style="IBUITableViewCellStyleDefault" id="oih-GN-MIz">
+                                        <rect key="frame" x="0.0" y="28" width="768" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oih-GN-MIz" id="Qfc-ys-txQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="768" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="RSSフィードタイトル" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jN8-Od-QHH">
+                                                    <rect key="frame" x="15" y="0.0" width="738" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="cJB-vd-24o" id="YV6-yA-cjS"/>
+                                    <outlet property="delegate" destination="cJB-vd-24o" id="Lnn-XF-C89"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="qPc-Az-jhY"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="選択フィード一覧" id="wHj-dH-pcJ"/>
+                    <connections>
+                        <outlet property="tableView" destination="IXW-Ht-nkk" id="8xt-6W-G1E"/>
+                        <segue destination="Q0J-wP-Rp4" kind="show" identifier="toList" id="l8z-ZI-eph"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Mj-cH-oMl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1756.25" y="841.9921875"/>
+        </scene>
+        <!--Article View Controller-->
+        <scene sceneID="P2l-89-veY">
+            <objects>
+                <viewController id="vkn-Kq-PR6" customClass="ArticleViewController" customModule="RSSreader" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Hcu-v5-mVq">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fbK-LR-sBZ">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="9tk-rg-ev0"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="GqV-V1-3ci"/>
+                    <connections>
+                        <outlet property="webView" destination="fbK-LR-sBZ" id="5Te-8q-rem"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="13m-ww-hU3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3311.71875" y="841.9921875"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="gtT-Dj-kNO">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bXg-62-QFe" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="M7j-sO-OfL">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="50"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Ejz-dU-rTq" kind="relationship" relationship="rootViewController" id="HAY-jL-OX1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z2a-am-gt4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="963.28125" y="109.5703125"/>
+        </scene>
+    </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="tVy-CH-Tfp"/>
+        <segue reference="L0N-wu-aUu"/>
+        <segue reference="obI-fm-MNE"/>
+        <segue reference="HAY-jL-OX1"/>
+        <segue reference="3P1-zA-lgc"/>
+        <segue reference="l8z-ZI-eph"/>
+    </inferredMetricsTieBreakers>
+    <resources>
+        <image name="check_off" width="106" height="106"/>
+    </resources>
+</document>
