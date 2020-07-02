@@ -7,10 +7,27 @@
 //
 
 import UIKit
+import BackgroundTasks
 
 class LoginViewController: UIViewController {
     
-    // ユーザー事に登録されている内容
+    /*
+     情報
+     
+     registData
+     → 0 = パスワード
+     → 1 = 表示一覧のタイトル
+     → 2 = フィードアドレス
+     → 3 = 一覧の表示方法 (table or collection)
+     
+     feedInfo
+     → フィードの記事情報
+     
+     feedInterval
+     → 記事を更新するタイミング
+     */
+    
+    // ユーザー事に登録されている内容      registData
     let userSetting: [String:Int] = ["password": 0,
                                      "feedTitle": 1,
                                      "feedAddress": 2,
@@ -113,8 +130,9 @@ class LoginViewController: UIViewController {
         print("--start ログイン画面--")
         self.navigationItem.hidesBackButton = true
         
-        //UserDefaults.standard.removeObject(forKey: "registData")
-        //UserDefaults.standard.removeObject(forKey: "feedInfo")
+        UserDefaults.standard.removeObject(forKey: "registData")
+        UserDefaults.standard.removeObject(forKey: "feedInfo")
+        UserDefaults.standard.removeObject(forKey: "feedInterval")
     }
     
     override func viewWillAppear(_ animated: Bool) {

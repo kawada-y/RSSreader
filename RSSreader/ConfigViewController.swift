@@ -27,6 +27,15 @@ class ConfigViewController: UIViewController, UITableViewDataSource, UITableView
         let registeredData = settings.dictionary(forKey: "registData")!
         userData = registeredData[userID] as? [String]
         
+        print(userID)
+        print(userData)
+        // テスト
+        print(FeedUpdate.timer.isValid)
+        for str in userData {
+            print(str)
+        }
+        print()
+        
         let registeredFeedInfo = settings.dictionary(forKey: "feedInfo")!
         let userFeedInfo = registeredFeedInfo[userID] as! Data
         self.items = try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(userFeedInfo) as! [Item]

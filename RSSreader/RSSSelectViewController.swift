@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import BackgroundTasks
 
 class RSSSelectViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -86,9 +87,9 @@ class RSSSelectViewController: UIViewController, UITableViewDataSource, UITableV
                     // フィード取得間隔情報無し
                     self.settings.set(registrationFeedInterval, forKey: "feedInterval")
                 }
-                let userInterval = FeedUpdate()
                 
-                userInterval.interval(userID: self.userID, feedAddress: self.feedAddress)
+                // フィード取得間隔のデフォルト登録
+                FeedUpdate.interval(userID: self.userID, feedAddress: self.feedAddress)
                 
                 // 登録したユーザー情報（userID）の更新
                 self.updateUserData(registeredData[self.userID] as? [String] ?? ["","","",""])

@@ -21,7 +21,8 @@ class RSSIntervalViewController: UIViewController, UIPickerViewDataSource, UIPic
                          "6時間",
                          "3時間",
                          "1時間",
-                         "テスト10分"]
+                         "テスト2分",
+                         "テスト1分"]
     let settingInterval: [Double] = [0,
                                      259200,
                                      86400,
@@ -29,7 +30,8 @@ class RSSIntervalViewController: UIViewController, UIPickerViewDataSource, UIPic
                                      21600,
                                      10800,
                                      3600,
-                                     600]
+                                     120,
+                                     60]
     
     var selectIntervalNumber: Int!
     
@@ -42,13 +44,16 @@ class RSSIntervalViewController: UIViewController, UIPickerViewDataSource, UIPic
         // 登録するフィード取得間隔情報
         let registrationFeedInterval: [String:Int] = [self.userID: selectIntervalNumber]
         // 登録ユーザーフィード取得間隔情報
-        let registeredFeedInterval = settings.dictionary(forKey: "feedInterval")
+        var registeredFeedInterval = settings.dictionary(forKey: "feedInterval")
         
         if 0 < selectIntervalNumber {
-            let userInterval = FeedUpdate()
-            userInterval.intervalUpdate(userID: self.userID, feedAddress: self.userData[2], updateInterval: settingInterval[selectIntervalNumber], repeats: true)
+            FeedUpdate.intervalUpdate(userID: self.userID, feedAddress: self.userData[2], timeInterval: settingInterval[selectIntervalNumber], repeats: true)
+            var userInterval = registeredFeedInterval![userID] as! Int
+            userInterval = selectIntervalNumber
+            registeredFeedInterval![userID] = userInterval
+            settings.set(registrationFeedInterval, forKey: "feedInterval")
         } else {
-            
+            FeedUpdate.invalidateUpdate()
         }
     }
     

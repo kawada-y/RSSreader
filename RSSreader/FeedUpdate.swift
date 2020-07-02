@@ -9,32 +9,36 @@
 import Foundation
 import CoreLocation
 
-class FeedUpdate: NSObject, CLLocationManagerDelegate {
+class FeedUpdate: Operation, CLLocationManagerDelegate {
     
-    var timer = Timer()
+    static var timer = Timer()
     
-    var userID: String = ""
-    var feedAddress: String = ""
-    var updateInterval: Double = 21600      // デフォルト　６時間
-    var repeats: Bool = true
+    static var userID: String = ""
+    static var feedAddress: String = ""
+    static var timeInterval: Double! = nil
+    static var defaultTimeInterval: Double = 21600      // デフォルト　６時間
+    static var repeats: Bool = true
     
     // 初期時
-    func interval (userID: String, feedAddress: String) {
+    static func interval (userID: String, feedAddress: String) {
+        self.userID = userID
         self.feedAddress = feedAddress
+        self.timeInterval = defaultTimeInterval
         startUpdate()
     }
     
     // 変更時
-    func intervalUpdate (userID: String, feedAddress: String, updateInterval: Double, repeats: Bool) {
+    static func intervalUpdate (userID: String, feedAddress: String, timeInterval: Double, repeats: Bool) {
         invalidateUpdate()
+        self.userID = userID
         self.feedAddress = feedAddress
-        self.updateInterval = updateInterval
+        self.timeInterval = timeInterval
         self.repeats = repeats
         startUpdate()
     }
     // タイマー
-    func startUpdate () {
-        timer = Timer.scheduledTimer(timeInterval: self.updateInterval,
+    static func startUpdate () {
+        timer = Timer.scheduledTimer(timeInterval: self.timeInterval,
                                      target: self,
                                      selector: #selector(feedUpdate),
                                      userInfo: nil,
@@ -43,12 +47,17 @@ class FeedUpdate: NSObject, CLLocationManagerDelegate {
     }
     
     // タイマーの無効
-    func invalidateUpdate () {
-        self.timer.invalidate()
+    static func invalidateUpdate () {
+        if self.timer.isValid {
+            self.timer.invalidate()
+        }
     }
     
     // 実行処理
-    @objc func feedUpdate() {
+    @objc static func feedUpdate() {
+        print("更新処理開始 \(self.timeInterval)")
+        print(NSDate().description)
+        
         let settings = UserDefaults.standard
         //let okButton = UIAlertAction(title: "閉じる", style: UIAlertAction.Style.default)
         
@@ -68,6 +77,50 @@ class FeedUpdate: NSObject, CLLocationManagerDelegate {
         } else {
             // フィード接続　NG
             return
+        }
+    }
+    
+    // バックグラウンド実行
+    override func main() {
+        
+        print("バックグラウンド更新処理開始 \(FeedUpdate.timeInterval)")
+        print(NSDate().description)
+        
+        let settings = UserDefaults.standard
+        //let okButton = UIAlertAction(title: "閉じる", style: UIAlertAction.Style.default)
+        print(FeedUpdate.userID)
+        
+        let queue = DispatchQueue.main
+        queue.async {
+            let feedInfo = ListInfo()
+            
+            if feedInfo.startDownload(FeedUpdate.feedAddress, view: nil) {
+                // フィード接続　OK
+                let items = feedInfo.items
+                let feedData = try! NSKeyedArchiver.archivedData(withRootObject: items, requiringSecureCoding: false)
+                
+                //print(FeedUpdate.userID)
+                
+                // 登録ユーザーフィード情報
+                var registeredFeedInfo = settings.dictionary(forKey: "feedInfo")
+                var userFeedInfo = registeredFeedInfo![FeedUpdate.userID]
+                userFeedInfo = feedData
+                registeredFeedInfo![FeedUpdate.userID] = userFeedInfo
+                // 登録ユーザーフィード情報の更新
+                settings.set(registeredFeedInfo, forKey: "feedInfo")
+                
+//                // テスト
+//                // 登録ユーザー情報
+//                var registeredInfo = settings.dictionary(forKey: "registData")
+//                var userInfo = registeredInfo![FeedUpdate.userID] as! [String]
+//                userInfo[1] = "痛いニュース"
+//                registeredInfo![FeedUpdate.userID] = userInfo
+//                // 登録ユーザーフィード情報の更新
+//                settings.set(registeredInfo, forKey: "registData")
+            } else {
+                // フィード接続　NG
+                return
+            }
         }
     }
 }

@@ -27,6 +27,7 @@
 		65801B7F24A1D0BA00F1B0E4 /* DisplaySettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65801B7E24A1D0BA00F1B0E4 /* DisplaySettingViewController.swift */; };
 		65B08B3624A5C4210091DCB0 /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B08B3524A5C4210091DCB0 /* Reachability.framework */; };
 		65B08B3824A5E7BE0091DCB0 /* FeedUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B08B3724A5E7BE0091DCB0 /* FeedUpdate.swift */; };
+		65B17DA824AC5711000C513D /* NewsstandKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B17DA724AC5711000C513D /* NewsstandKit.framework */; };
 		6D1B88DFBC8D5477EAC77A26 /* Pods_RSSreader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B1545618B508CB287C73AF2 /* Pods_RSSreader.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,7 @@
 		65801B7E24A1D0BA00F1B0E4 /* DisplaySettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplaySettingViewController.swift; sourceTree = "<group>"; };
 		65B08B3524A5C4210091DCB0 /* Reachability.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Reachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65B08B3724A5E7BE0091DCB0 /* FeedUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedUpdate.swift; sourceTree = "<group>"; };
+		65B17DA724AC5711000C513D /* NewsstandKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NewsstandKit.framework; path = System/Library/Frameworks/NewsstandKit.framework; sourceTree = SDKROOT; };
 		CFBE6A645FB9F8F253592DFE /* Pods-RSSreader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSSreader.release.xcconfig"; path = "Target Support Files/Pods-RSSreader/Pods-RSSreader.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -64,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65B17DA824AC5711000C513D /* NewsstandKit.framework in Frameworks */,
 				65B08B3624A5C4210091DCB0 /* Reachability.framework in Frameworks */,
 				65063CBF249C53FF006217F5 /* WebKit.framework in Frameworks */,
 				6D1B88DFBC8D5477EAC77A26 /* Pods_RSSreader.framework in Frameworks */,
@@ -85,6 +88,7 @@
 		65063CBD249C53FF006217F5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				65B17DA724AC5711000C513D /* NewsstandKit.framework */,
 				65B08B3524A5C4210091DCB0 /* Reachability.framework */,
 				6556BDCF24A5A99100206828 /* Reachability.framework */,
 				65063CBE249C53FF006217F5 /* WebKit.framework */,
