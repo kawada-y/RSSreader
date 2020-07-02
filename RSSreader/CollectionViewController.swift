@@ -12,11 +12,6 @@ private let reuseIdentifier = "articleCell2"
 
 class CollectionViewController: UICollectionViewController, XMLParserDelegate {
     
-//    var parser: XMLParser!
-//    var items = [Item]()
-//    var item: Item?
-//    var currentString = ""
-    
     var userID: String!
     var userData: [String]!
     
@@ -53,56 +48,6 @@ class CollectionViewController: UICollectionViewController, XMLParserDelegate {
         
         self.collectionView.reloadData()
     }
-    
-//    func startDownload(_ selectfeed: String) {
-//        print("startDownload")
-//        self.items = []
-//        if let url = URL(string: selectfeed) {
-//            if let parser = XMLParser(contentsOf: url) {
-//                self.parser = parser
-//                self.parser.delegate = self
-//                self.parser.parse()
-//            }
-//        }
-//    }
-//
-//    func parser(_ parser: XMLParser,
-//                didStartElement elementName: String,
-//                namespaceURI: String?,
-//                qualifiedName qName: String?,
-//                attributes attributeDict: [String : String]) {
-//        self.currentString = ""
-//        if elementName == "item" {
-//            self.item = Item()
-//        }
-//    }
-//
-//    func parser(_ parser: XMLParser, foundCharacters string: String) {
-//        self.currentString += string
-//    }
-//
-//    func parser(_ parser: XMLParser,
-//                didEndElement elementName: String,
-//                namespaceURI: String?,
-//                qualifiedName qName: String?) {
-//        switch elementName {
-//        case "title": self.item?.title = currentString
-//        case "link": self.item?.link = currentString
-//        case "item": self.items.append(self.item!)
-//        case "content:encoded":
-//            guard let range = currentString.range(of: "<img src=") else { return }
-//            let start = currentString.index(range.lowerBound, offsetBy: 10)
-//            guard let range2 = currentString.range(of: "\"", range: start..<currentString.endIndex) else { return }
-//            let end = range2.lowerBound
-//            let imageURL = String(currentString[start..<end])
-//            self.item?.image = URL(string: imageURL)
-//        default: break
-//        }
-//    }
-//
-//    func parserDidEndDocument(_ parser: XMLParser) {
-//        self.collectionView.reloadData()
-//    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("prepare 遷移前")

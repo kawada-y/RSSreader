@@ -55,7 +55,7 @@ class FeedUpdate: Operation, CLLocationManagerDelegate {
     
     // 実行処理
     @objc static func feedUpdate() {
-        print("更新処理開始 \(self.timeInterval)")
+        print("更新処理開始")
         print(NSDate().description)
         
         let settings = UserDefaults.standard
@@ -83,7 +83,7 @@ class FeedUpdate: Operation, CLLocationManagerDelegate {
     // バックグラウンド実行
     override func main() {
         
-        print("バックグラウンド更新処理開始 \(FeedUpdate.timeInterval)")
+        print("バックグラウンド更新処理開始")
         print(NSDate().description)
         
         let settings = UserDefaults.standard

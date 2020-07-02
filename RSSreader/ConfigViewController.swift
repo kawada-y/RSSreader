@@ -27,8 +27,6 @@ class ConfigViewController: UIViewController, UITableViewDataSource, UITableView
         let registeredData = settings.dictionary(forKey: "registData")!
         userData = registeredData[userID] as? [String]
         
-        print(userID)
-        print(userData)
         // テスト
         print(FeedUpdate.timer.isValid)
         for str in userData {

@@ -11,11 +11,6 @@ import UIKit
 
 class ListViewController: UITableViewController, XMLParserDelegate {
     
-//    var parser: XMLParser!
-//    var items = [Item]()
-//    var item: Item?
-//    var currentString = ""
-    
     var userID: String!
     var userData: [String]!
     
@@ -50,54 +45,8 @@ class ListViewController: UITableViewController, XMLParserDelegate {
         self.navigationItem.hidesBackButton = true
         
         tableTitle.title = userData[1]
-        //feedInfo.startDownload(userData[2])
-        
-        //feedInfo.setDelegate(self)
-        
         self.tableView.reloadData()
     }
-    
-//    func startDownload(_ selectfeed: String) {
-//        self.items = []
-//        if let url = URL(string: selectfeed) {
-//            if let parser = XMLParser(contentsOf: url) {
-//                self.parser = parser
-//                self.parser.delegate = self
-//                self.parser.parse()
-//            }
-//        }
-//    }
-    
-//    func parser(_ parser: XMLParser,
-//                didStartElement elementName: String,
-//                namespaceURI: String?,
-//                qualifiedName qName: String?,
-//                attributes attributeDict: [String : String]) {
-//        self.currentString = ""
-//        if elementName == "item" {
-//            self.item = Item()
-//        }
-//    }
-//
-//    func parser(_ parser: XMLParser, foundCharacters string: String) {
-//        self.currentString += string
-//    }
-//
-//    func parser(_ parser: XMLParser,
-//                didEndElement elementName: String,
-//                namespaceURI: String?,
-//                qualifiedName qName: String?) {
-//        switch elementName {
-//        case "title": self.item?.title = currentString
-//        case "link": self.item?.link = currentString
-//        case "item": self.items.append(self.item!)
-//        default: break
-//        }
-//    }
-//
-//    func parserDidEndDocument(_ parser: XMLParser) {
-//        self.tableView.reloadData()
-//    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "toArticle") {
