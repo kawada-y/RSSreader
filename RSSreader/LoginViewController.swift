@@ -124,6 +124,10 @@ class LoginViewController: UIViewController {
         }
     }
     
+    @IBAction func downSwipe(_ sender: Any) {
+        print("スワイプダウン")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -133,6 +137,11 @@ class LoginViewController: UIViewController {
         UserDefaults.standard.removeObject(forKey: "registData")
         UserDefaults.standard.removeObject(forKey: "feedInfo")
         UserDefaults.standard.removeObject(forKey: "feedInterval")
+        
+    }
+    
+    @IBAction func swipe(_ sender: Any) {
+        print("down")
     }
     
     override func viewWillAppear(_ animated: Bool) {

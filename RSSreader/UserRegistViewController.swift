@@ -76,6 +76,17 @@ class UserRegistViewController: UIViewController {
         super.viewDidLoad()
         
         print("--登録画面--")
+        
+        // test
+        let c = (self.navigationController?.viewControllers.count)! - 1
+        print(c)
+        let v = self.navigationController?.viewControllers[1]
+        print(v!)
+        if type(of: v!) == UserRegistViewController.self {
+            print("一致")
+        }
+        print(type(of: v!) == UserRegistViewController.self)
+        print(UserRegistViewController.self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

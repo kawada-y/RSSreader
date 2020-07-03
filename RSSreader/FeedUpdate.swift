@@ -55,43 +55,41 @@ class FeedUpdate: Operation, CLLocationManagerDelegate {
     
     // 実行処理
     @objc static func feedUpdate() {
-        print("更新処理開始")
-        print(NSDate().description)
-        
-        let settings = UserDefaults.standard
-        //let okButton = UIAlertAction(title: "閉じる", style: UIAlertAction.Style.default)
-        
-        let feedInfo = ListInfo()
-        if feedInfo.startDownload(self.feedAddress, view: nil) {
-            // フィード接続　OK
-            let items = feedInfo.items
-            let feedData = try! NSKeyedArchiver.archivedData(withRootObject: items, requiringSecureCoding: false)
+        // グローバルキューで実行
+        //DispatchQueue.global().async {
+            // 更新処理
+            //print(NSDate().description)
+            let settings = UserDefaults.standard
             
-            // 登録ユーザーフィード情報
-            var registeredFeedInfo = settings.dictionary(forKey: "feedInfo")
-            var userFeedInfo = registeredFeedInfo![userID]
-            userFeedInfo = feedData
-            registeredFeedInfo![userID] = userFeedInfo
-            // 登録ユーザーフィード情報の更新
-            settings.set(registeredFeedInfo, forKey: "feedInfo")
-        } else {
-            // フィード接続　NG
-            return
-        }
+            let feedInfo = ListInfo()
+            if feedInfo.startDownload(self.feedAddress, view: nil) {
+                // フィード接続　OK
+                let items = feedInfo.items
+                let feedData = try! NSKeyedArchiver.archivedData(withRootObject: items, requiringSecureCoding: false)
+                
+                // 登録ユーザーフィード情報
+                var registeredFeedInfo = settings.dictionary(forKey: "feedInfo")
+                var userFeedInfo = registeredFeedInfo![userID]
+                userFeedInfo = feedData
+                registeredFeedInfo![userID] = userFeedInfo
+                // 登録ユーザーフィード情報の更新
+                settings.set(registeredFeedInfo, forKey: "feedInfo")
+            } else {
+                // フィード接続　NG
+                return
+            }
+        //}
     }
     
     // バックグラウンド実行
     override func main() {
         
-        print("バックグラウンド更新処理開始")
-        print(NSDate().description)
+        // バックグラウンド更新処理開始
+        //print(NSDate().description)
         
         let settings = UserDefaults.standard
-        //let okButton = UIAlertAction(title: "閉じる", style: UIAlertAction.Style.default)
-        print(FeedUpdate.userID)
-        
-        let queue = DispatchQueue.main
-        queue.async {
+        // mainスレッド処理
+        DispatchQueue.main.async {
             let feedInfo = ListInfo()
             
             if feedInfo.startDownload(FeedUpdate.feedAddress, view: nil) {
@@ -108,15 +106,6 @@ class FeedUpdate: Operation, CLLocationManagerDelegate {
                 registeredFeedInfo![FeedUpdate.userID] = userFeedInfo
                 // 登録ユーザーフィード情報の更新
                 settings.set(registeredFeedInfo, forKey: "feedInfo")
-                
-//                // テスト
-//                // 登録ユーザー情報
-//                var registeredInfo = settings.dictionary(forKey: "registData")
-//                var userInfo = registeredInfo![FeedUpdate.userID] as! [String]
-//                userInfo[1] = "痛いニュース"
-//                registeredInfo![FeedUpdate.userID] = userInfo
-//                // 登録ユーザーフィード情報の更新
-//                settings.set(registeredInfo, forKey: "registData")
             } else {
                 // フィード接続　NG
                 return

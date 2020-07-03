@@ -139,4 +139,8 @@ class RSSSelectViewController: UIViewController, UITableViewDataSource, UITableV
         print("--フィード選択画面--")
         self.navigationItem.hidesBackButton = true
     }
+    
+    @IBAction func swipeDown(_ sender: Any) {
+        print("スパイプ")
+    }
 }

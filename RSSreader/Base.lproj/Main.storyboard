@@ -27,9 +27,13 @@
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="記事タイトル" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="crB-5K-kpJ">
                                             <rect key="frame" x="20" y="0.0" width="728" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <gestureRecognizers/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
+                                            <connections>
+                                                <outletCollection property="gestureRecognizers" destination="KZJ-Uf-MXt" appends="YES" id="2Bt-e4-S0A"/>
+                                            </connections>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
@@ -58,6 +62,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cd6-FP-aL5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="down" numberOfTouchesRequired="2" id="KZJ-Uf-MXt">
+                    <connections>
+                        <action selector="swipeDown:" destination="Q0J-wP-Rp4" id="xRZ-IM-oy5"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2539.84375" y="841.40625"/>
         </scene>
@@ -178,11 +187,15 @@
                             </textField>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="Waf-Td-8Uj" firstAttribute="top" secondItem="7w5-Y5-Qxw" secondAttribute="top" constant="511" id="Koj-3m-jyG"/>
                             <constraint firstItem="Waf-Td-8Uj" firstAttribute="leading" secondItem="KlI-JA-7B1" secondAttribute="leading" constant="166" id="swY-eG-dnz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="KlI-JA-7B1"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="pKc-sJ-WMs" appends="YES" id="oyL-19-rMb"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="RnJ-Ql-NBc">
                         <barButtonItem key="rightBarButtonItem" title="新規登録" id="pUn-kO-lFL">
@@ -201,6 +214,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ve1-BL-0CI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="down" numberOfTouchesRequired="2" id="pKc-sJ-WMs">
+                    <connections>
+                        <action selector="swipe:" destination="Ejz-dU-rTq" id="LXQ-qJ-ORf"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1728.90625" y="109.5703125"/>
         </scene>
@@ -331,15 +349,6 @@
                                 <state key="normal" title="決定"/>
                                 <connections>
                                     <action selector="decisionAction:" destination="4GP-Yj-uh0" eventType="touchUpInside" id="FJC-zC-A95"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oGC-On-9Lo">
-                                <rect key="frame" x="285" y="767" width="213" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <state key="normal" title="一覧を更新する"/>
-                                <connections>
-                                    <action selector="updateAction:" destination="4GP-Yj-uh0" eventType="touchUpInside" id="FE8-Rj-4Iz"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -489,7 +498,11 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="qPc-Az-jhY"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="CgB-aZ-4Gj" appends="YES" id="JAO-zm-jqt"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="選択フィード一覧" id="wHj-dH-pcJ"/>
                     <connections>
@@ -498,6 +511,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Mj-cH-oMl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="down" numberOfTouchesRequired="2" id="CgB-aZ-4Gj">
+                    <connections>
+                        <action selector="swipeDown:" destination="cJB-vd-24o" id="UjF-3z-0CK"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1756.25" y="841.9921875"/>
         </scene>
@@ -506,7 +524,7 @@
             <objects>
                 <viewController id="vkn-Kq-PR6" customClass="ArticleViewController" customModule="RSSreader" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Hcu-v5-mVq">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="712" height="984"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fbK-LR-sBZ">
@@ -551,12 +569,12 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="tVy-CH-Tfp"/>
-        <segue reference="3lU-pO-6Dv"/>
-        <segue reference="obI-fm-MNE"/>
-        <segue reference="HAY-jL-OX1"/>
+        <segue reference="DuZ-oR-tKZ"/>
+        <segue reference="L0N-wu-aUu"/>
+        <segue reference="MDB-4Q-Mee"/>
+        <segue reference="Nfh-l2-ETR"/>
         <segue reference="3P1-zA-lgc"/>
-        <segue reference="VO1-hE-LCe"/>
+        <segue reference="l8z-ZI-eph"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="check_off" width="106" height="106"/>
