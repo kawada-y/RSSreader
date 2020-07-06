@@ -28,15 +28,15 @@ class LoginViewController: UIViewController {
      */
     
     // ユーザー事に登録されている内容      registData
-    let userSetting: [String:Int] = ["password": 0,
+    fileprivate let userSetting: [String:Int] = ["password": 0,
                                      "feedTitle": 1,
                                      "feedAddress": 2,
                                      "displaySelect": 3
     ]
     // ユーザー情報
-    var userData: [String]!
+    fileprivate var userData: [String]!
     // 選択フィード情報
-    var items = [Item]()
+    fileprivate var items = [Item]()
     
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
@@ -134,9 +134,9 @@ class LoginViewController: UIViewController {
         print("--start ログイン画面--")
         self.navigationItem.hidesBackButton = true
         
-        UserDefaults.standard.removeObject(forKey: "registData")
-        UserDefaults.standard.removeObject(forKey: "feedInfo")
-        UserDefaults.standard.removeObject(forKey: "feedInterval")
+        //UserDefaults.standard.removeObject(forKey: "registData")
+        //UserDefaults.standard.removeObject(forKey: "feedInfo")
+        //UserDefaults.standard.removeObject(forKey: "feedInterval")
         
     }
     

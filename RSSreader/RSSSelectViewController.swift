@@ -13,13 +13,12 @@ class RSSSelectViewController: UIViewController, UITableViewDataSource, UITableV
     
     @IBOutlet weak var tableView: UITableView!
     
-    let settings = UserDefaults.standard
-    var userData: [String]!
+    //let settings = UserDefaults.standard
+    fileprivate var userData: [String]!
     var userID: String!
-    var feedTitle: String!
-    var feedAddress: String!
-    var items: [Item]!
-    //var feedInfo: ListInfo!
+    fileprivate var feedTitle: String!
+    fileprivate var feedAddress: String!
+    fileprivate var items: [Item]!
     
     let feedTitleList = ["Gigazine",
                      "痛いニュース(ﾉ∀`)",
@@ -56,8 +55,11 @@ class RSSSelectViewController: UIViewController, UITableViewDataSource, UITableV
             self.feedTitle = self.feedTitleList[indexPath.row]
             self.feedAddress = self.feedAddressList[indexPath.row]
             
+            // ユーザーデフォルト
+            let settings = UserDefaults.standard
+            
             // 登録ユーザー情報
-            var registeredData = self.settings.dictionary(forKey: "registData")!
+            var registeredData = settings.dictionary(forKey: "registData")!
             
             // フィード情報の作成
             let feedInfo = ListInfo()
@@ -69,23 +71,23 @@ class RSSSelectViewController: UIViewController, UITableViewDataSource, UITableV
                 // 登録するフィード情報
                 let registrationFeedInfo: [String:Data] = [self.userID : feedData]
                 // 登録ユーザーフィード情報
-                if let registeredFeedInfo = self.settings.dictionary(forKey: "feedInfo") {
+                if let registeredFeedInfo = settings.dictionary(forKey: "feedInfo") {
                     // フィード登録情報有り
-                    self.settings.set(registeredFeedInfo.union(registrationFeedInfo), forKey: "feedInfo")
+                    settings.set(registeredFeedInfo.union(registrationFeedInfo), forKey: "feedInfo")
                 } else {
                     // フィード登録情報無し
-                    self.settings.set(registrationFeedInfo, forKey: "feedInfo")
+                    settings.set(registrationFeedInfo, forKey: "feedInfo")
                 }
                 
                 // 登録するフィード取得間隔情報
                 let registrationFeedInterval: [String:Int] = [self.userID: 4]
                 // 登録ユーザーフィード取得間隔情報
-                if let registeredFeedInterval = self.settings.dictionary(forKey: "feedInterval") {
+                if let registeredFeedInterval = settings.dictionary(forKey: "feedInterval") {
                     // フィード取得間隔情報有り
-                    self.settings.set(registeredFeedInterval.union(registrationFeedInterval), forKey: "feedInterval")
+                    settings.set(registeredFeedInterval.union(registrationFeedInterval), forKey: "feedInterval")
                 } else {
                     // フィード取得間隔情報無し
-                    self.settings.set(registrationFeedInterval, forKey: "feedInterval")
+                    settings.set(registrationFeedInterval, forKey: "feedInterval")
                 }
                 
                 // フィード取得間隔のデフォルト登録
@@ -96,9 +98,15 @@ class RSSSelectViewController: UIViewController, UITableViewDataSource, UITableV
                 registeredData[self.userID] = self.userData
                 
                 // ユーザーの更新情報の登録
-                self.settings.set(registeredData, forKey: "registData")
+                settings.set(registeredData, forKey: "registData")
                 
-                self.performSegue(withIdentifier: "toList", sender: nil)
+                let backViewNumber = (self.navigationController?.viewControllers.count)! - 1
+                let backView = self.navigationController?.viewControllers[backViewNumber]
+                if type(of: backView!) == ConfigViewController.self {
+                    self.performSegue(withIdentifier: "backConfig", sender: nil)
+                } else {
+                    self.performSegue(withIdentifier: "toList", sender: nil)
+                }
             } else {
                 // フィード接続　NG
                 return
@@ -130,6 +138,9 @@ class RSSSelectViewController: UIViewController, UITableViewDataSource, UITableV
             nextView.userID = self.userID
             nextView.userData = self.userData
             nextView.items = self.items
+        } else if (segue.identifier == "backConfig") {
+            let backView: ConfigViewController = (segue.destination as? ConfigViewController)!
+            backView.userID = self.userID
         }
     }
     

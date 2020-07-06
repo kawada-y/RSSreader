@@ -9,13 +9,12 @@
 import Foundation
 import UIKit
 
-class ListViewController: UITableViewController, XMLParserDelegate {
+class ListViewController: UITableViewController, XMLParserDelegate, RefreshP {
     
     var userID: String!
     var userData: [String]!
-    
-    //var feedInfo: ListInfo!
     var items: [Item]!
+    
     
     let semaphore = DispatchSemaphore(value: 1)
     
@@ -51,14 +50,20 @@ class ListViewController: UITableViewController, XMLParserDelegate {
         tableTitle.title = userData[1]
         self.tableView.reloadData()
         
-        self.extendedLayoutIncludesOpaqueBars = true //
+        //self.extendedLayoutIncludesOpaqueBars = true //
         
         // リフレッシュ更新
+        refreshAction()
+    }
+    
+    func refreshAction() {
         self.refreshControl = UIRefreshControl()
         self.refreshControl?.attributedTitle = NSAttributedString(string: "記事の更新中・・")
-        self.refreshControl?.addTarget(self, action: #selector(refresh), for: UIControl.Event.valueChanged)
+        self.refreshControl?.addTarget(self, action: #selector(updateRefresh), for: UIControl.Event.valueChanged)
     }
-    @objc func refresh() {
+    
+    //
+    @objc func updateRefresh() {
         let settings = UserDefaults.standard
         let feedInfo = ListInfo()
         if feedInfo.startDownload(self.userData[2], view: self) {
@@ -66,7 +71,7 @@ class ListViewController: UITableViewController, XMLParserDelegate {
             let items = feedInfo.items
             self.items = items
             let feedData = try! NSKeyedArchiver.archivedData(withRootObject: items, requiringSecureCoding: false)
-            
+
             // 登録ユーザーフィード情報
             var registeredFeedInfo = settings.dictionary(forKey: "feedInfo")
             var userFeedInfo = registeredFeedInfo![userID]
@@ -78,12 +83,10 @@ class ListViewController: UITableViewController, XMLParserDelegate {
             // フィード接続　NG
             return
         }
-        
-        
+
         semaphore.wait()
         semaphore.signal()
-        
-        print("リフレッシュ")
+
         refreshControl?.endRefreshing()
         tableView.reloadData()
     }

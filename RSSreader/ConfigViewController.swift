@@ -14,7 +14,7 @@ class ConfigViewController: UIViewController, UITableViewDataSource, UITableView
     var userID: String!
     var userData: [String]!
     
-    var items: [Item]!
+    fileprivate var items: [Item]!
     // 設定できる項目
     let settingItems: [String] = ["一覧画面の表示切り替え",
                            "RSS取得間隔",
@@ -61,7 +61,7 @@ class ConfigViewController: UIViewController, UITableViewDataSource, UITableView
         case 0: print("表示切り替え")
             self.performSegue(withIdentifier: "toDisplaySetting", sender: nil)
         case 1: self.performSegue(withIdentifier: "toIntervalSetting", sender: nil)
-        case 2: self.performSegue(withIdentifier: "toSubManaSetting", sender: nil)
+        case 2: self.performSegue(withIdentifier: "toRSSSelect", sender: nil)
         case 3: self.performSegue(withIdentifier: "toFontSetting", sender: nil)
         default: break
         }
@@ -100,7 +100,9 @@ class ConfigViewController: UIViewController, UITableViewDataSource, UITableView
             let nextView = segue.destination as! RSSIntervalViewController
             nextView.userID = self.userID
             nextView.userData = self.userData
-        } else if (segue.identifier == "toSubManaSetting") {
+        } else if (segue.identifier == "toRSSSelect") {
+            let nextView = segue.destination as! RSSSelectViewController
+            nextView.userID = self.userID
         } else if (segue.identifier == "toFontSetting") {
         }
     }

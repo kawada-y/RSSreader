@@ -28,6 +28,7 @@
 		65B08B3624A5C4210091DCB0 /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B08B3524A5C4210091DCB0 /* Reachability.framework */; };
 		65B08B3824A5E7BE0091DCB0 /* FeedUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B08B3724A5E7BE0091DCB0 /* FeedUpdate.swift */; };
 		65B17DA824AC5711000C513D /* NewsstandKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B17DA724AC5711000C513D /* NewsstandKit.framework */; };
+		65DCB88324B2E98E004C9F9C /* RefreshP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DCB88224B2E98E004C9F9C /* RefreshP.swift */; };
 		6D1B88DFBC8D5477EAC77A26 /* Pods_RSSreader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B1545618B508CB287C73AF2 /* Pods_RSSreader.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,7 @@
 		65B08B3524A5C4210091DCB0 /* Reachability.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Reachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65B08B3724A5E7BE0091DCB0 /* FeedUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedUpdate.swift; sourceTree = "<group>"; };
 		65B17DA724AC5711000C513D /* NewsstandKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NewsstandKit.framework; path = System/Library/Frameworks/NewsstandKit.framework; sourceTree = SDKROOT; };
+		65DCB88224B2E98E004C9F9C /* RefreshP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshP.swift; sourceTree = "<group>"; };
 		CFBE6A645FB9F8F253592DFE /* Pods-RSSreader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSSreader.release.xcconfig"; path = "Target Support Files/Pods-RSSreader/Pods-RSSreader.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -127,16 +129,17 @@
 				653579B2249C959000398D76 /* CollectionViewController.swift */,
 				650A0C122484DC25008B8CDF /* Assets.xcassets */,
 				650A0C142484DC25008B8CDF /* LaunchScreen.storyboard */,
-				650A0C172484DC25008B8CDF /* Info.plist */,
 				652D142E248A3E8E00D8CB22 /* LoginViewController.swift */,
 				652D1430248A412500D8CB22 /* UserRegistViewController.swift */,
 				652D1432248A419100D8CB22 /* RSSSelectViewController.swift */,
 				652D1434248A420000D8CB22 /* ConfigViewController.swift */,
 				652D1436248A425800D8CB22 /* ListViewController.swift */,
 				652D143A248A45CB00D8CB22 /* ArticleViewController.swift */,
+				650A0C172484DC25008B8CDF /* Info.plist */,
 				65106B9524A31F5F009C9EFB /* ListInfo.swift */,
 				6556BDCD24A58C1000206828 /* RSSIntervalViewController.swift */,
 				65B08B3724A5E7BE0091DCB0 /* FeedUpdate.swift */,
+				65DCB88224B2E98E004C9F9C /* RefreshP.swift */,
 			);
 			path = RSSreader;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				650A0C0A2484DC1C008B8CDF /* AppDelegate.swift in Sources */,
 				65801B7F24A1D0BA00F1B0E4 /* DisplaySettingViewController.swift in Sources */,
 				653579B5249C976700398D76 /* Item.swift in Sources */,
+				65DCB88324B2E98E004C9F9C /* RefreshP.swift in Sources */,
 				652D1435248A420000D8CB22 /* ConfigViewController.swift in Sources */,
 				650A0C0C2484DC1C008B8CDF /* SceneDelegate.swift in Sources */,
 				65B08B3824A5E7BE0091DCB0 /* FeedUpdate.swift in Sources */,

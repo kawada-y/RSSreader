@@ -10,16 +10,17 @@ import UIKit
 
 private let reuseIdentifier = "articleCell2"
 
-class CollectionViewController: UICollectionViewController, XMLParserDelegate {
+class CollectionViewController: UICollectionViewController, XMLParserDelegate, RefreshP {
     
     var userID: String!
     var userData: [String]!
-    
     var items: [Item]!
+    
+    let semaphore = DispatchSemaphore(value: 1)
     
     @IBOutlet weak var tableTitle: UINavigationItem!
     
-    @IBOutlet var colView: UICollectionView!
+    //@IBOutlet var colView: UICollectionView!
     
     // ログイン画面に戻るボタン
     @IBAction func goBackLogin(_ sender: Any) {
@@ -34,7 +35,7 @@ class CollectionViewController: UICollectionViewController, XMLParserDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        colView.delegate = self
+        collectionView.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -47,6 +48,43 @@ class CollectionViewController: UICollectionViewController, XMLParserDelegate {
         //startDownload(userData[2])
         
         self.collectionView.reloadData()
+        
+        refreshAction()
+    }
+    
+    func refreshAction() {
+        
+        collectionView.refreshControl = UIRefreshControl()
+        collectionView.refreshControl?.attributedTitle = NSAttributedString(string: "記事の更新中・・")
+        collectionView.refreshControl?.addTarget(self, action: #selector(updateRefresh), for: UIControl.Event.valueChanged)
+    }
+    
+    func updateRefresh() {
+        let settings = UserDefaults.standard
+        let feedInfo = ListInfo()
+        if feedInfo.startDownload(self.userData[2], view: self) {
+            // フィード接続　OK
+            let items = feedInfo.items
+            self.items = items
+            let feedData = try! NSKeyedArchiver.archivedData(withRootObject: items, requiringSecureCoding: false)
+
+            // 登録ユーザーフィード情報
+            var registeredFeedInfo = settings.dictionary(forKey: "feedInfo")
+            var userFeedInfo = registeredFeedInfo![userID]
+            userFeedInfo = feedData
+            registeredFeedInfo![userID] = userFeedInfo
+            // 登録ユーザーフィード情報の更新
+            settings.set(registeredFeedInfo, forKey: "feedInfo")
+        } else {
+            // フィード接続　NG
+            return
+        }
+
+        semaphore.wait()
+        semaphore.signal()
+
+        collectionView.refreshControl?.endRefreshing()
+        collectionView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

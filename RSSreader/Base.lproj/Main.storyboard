@@ -132,7 +132,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="colView" destination="Joc-0U-3Px" id="nmV-db-Jff"/>
                         <outlet property="tableTitle" destination="ha3-mB-wpd" id="7CR-O9-VcK"/>
                         <segue destination="vkn-Kq-PR6" kind="show" identifier="toArticle" id="tVy-CH-Tfp"/>
                         <segue destination="wjq-Sg-eoG" kind="show" identifier="toSetting" id="obI-fm-MNE"/>
@@ -274,10 +273,10 @@
                     <connections>
                         <segue destination="6f8-86-bMr" kind="show" identifier="toDisplaySetting" id="FN6-Le-CQt"/>
                         <segue destination="4GP-Yj-uh0" kind="show" identifier="toIntervalSetting" id="cIw-Kt-jmo"/>
-                        <segue destination="7G4-Hr-acG" kind="show" identifier="toSubManaSetting" id="4Oh-oW-MBO"/>
                         <segue destination="I0j-Nt-6pt" kind="show" identifier="toFontSetting" id="Mxm-2h-9lG"/>
                         <segue destination="Q0J-wP-Rp4" kind="show" identifier="toBackTable" id="sIq-qZ-bdX"/>
                         <segue destination="qIN-jw-S0B" kind="show" identifier="toBackCollection" id="nHw-aE-VYW"/>
+                        <segue destination="cJB-vd-24o" kind="show" identifier="toRSSSelect" id="klx-T5-UgM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YrW-Nm-Sux" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -394,7 +393,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DgK-3S-TfE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4542" y="1518"/>
+            <point key="canvasLocation" x="3495" y="2742"/>
         </scene>
         <!--User Regist View Controller-->
         <scene sceneID="rl0-15-rKF">
@@ -508,6 +507,7 @@
                     <connections>
                         <outlet property="tableView" destination="IXW-Ht-nkk" id="8xt-6W-G1E"/>
                         <segue destination="Q0J-wP-Rp4" kind="show" identifier="toList" id="l8z-ZI-eph"/>
+                        <segue destination="wjq-Sg-eoG" kind="show" identifier="backConfig" id="UDA-Zx-X5R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Mj-cH-oMl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -524,7 +524,7 @@
             <objects>
                 <viewController id="vkn-Kq-PR6" customClass="ArticleViewController" customModule="RSSreader" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Hcu-v5-mVq">
-                        <rect key="frame" x="0.0" y="0.0" width="712" height="984"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fbK-LR-sBZ">
@@ -569,11 +569,11 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="DuZ-oR-tKZ"/>
-        <segue reference="L0N-wu-aUu"/>
-        <segue reference="MDB-4Q-Mee"/>
-        <segue reference="Nfh-l2-ETR"/>
-        <segue reference="3P1-zA-lgc"/>
+        <segue reference="tVy-CH-Tfp"/>
+        <segue reference="klx-T5-UgM"/>
+        <segue reference="UDA-Zx-X5R"/>
+        <segue reference="JtL-lu-yTZ"/>
+        <segue reference="nHw-aE-VYW"/>
         <segue reference="l8z-ZI-eph"/>
     </inferredMetricsTieBreakers>
     <resources>
