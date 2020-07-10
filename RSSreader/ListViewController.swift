@@ -14,7 +14,7 @@ class ListViewController: UITableViewController, XMLParserDelegate, RefreshP {
     var userID: String!
     var userData: [String]!
     var items: [Item]!
-    
+    var fontSizeList: [Int]!
     
     let semaphore = DispatchSemaphore(value: 1)
     
@@ -36,6 +36,7 @@ class ListViewController: UITableViewController, XMLParserDelegate, RefreshP {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "articleCell", for: indexPath)
         cell.textLabel?.text = items[indexPath.row].title
+        Utility.setTableViewCellFont(cell: cell, fontSize: fontSizeList[0])
         return cell
     }
     
@@ -97,12 +98,12 @@ class ListViewController: UITableViewController, XMLParserDelegate, RefreshP {
                 let item = items[indexPath.row]
                 let controller = segue.destination as! ArticleViewController
                 controller.title = item.title
-                //controller.link = item.link
                 controller.requestData = item.requestData
             }
         } else if (segue.identifier == "toSetting") {
             let nextView = segue.destination as! ConfigViewController
             nextView.userID = self.userID
+            nextView.fontSizeList = self.fontSizeList
         }
     }
 }

@@ -13,15 +13,16 @@ class DisplaySettingViewController: UIViewController {
     // ユーザー情報
     var userID: String!
     var userData: [String]!
+    var fontSizeList: [Int]!
     
     // ラジオボタンの数
-    var buttons: Int = 2
+    fileprivate let buttons: Int = 2
     // チェックされているボタン
-    var checkButtonTag = 0
+    fileprivate var checkButtonTag = 0
     
     // 画像
-    let checkedImage = UIImage(named: "check_on")! as UIImage
-    let uncheckedImage = UIImage(named: "check_off")! as UIImage
+    fileprivate let checkedImage = UIImage(named: "check_on")! as UIImage
+    fileprivate let uncheckedImage = UIImage(named: "check_off")! as UIImage
     
     @IBOutlet weak var tableButton: UIButton!
     @IBOutlet weak var collectionButton: UIButton!
@@ -72,6 +73,8 @@ class DisplaySettingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        Utility.setFont(view: self, fontSize: fontSizeList[1])
         
         var checkTable = false
         var checkCollection = false

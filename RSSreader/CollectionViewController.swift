@@ -15,6 +15,7 @@ class CollectionViewController: UICollectionViewController, XMLParserDelegate, R
     var userID: String!
     var userData: [String]!
     var items: [Item]!
+    var fontSizeList: [Int]!
     
     let semaphore = DispatchSemaphore(value: 1)
     
@@ -100,6 +101,7 @@ class CollectionViewController: UICollectionViewController, XMLParserDelegate, R
         } else if (segue.identifier == "toSetting") {
             let nextView = segue.destination as! ConfigViewController
             nextView.userID = self.userID
+            nextView.fontSizeList = self.fontSizeList
         }
     }
     
@@ -129,6 +131,8 @@ class CollectionViewController: UICollectionViewController, XMLParserDelegate, R
         
         let cellLabel = cellView?.viewWithTag(2) as! UILabel
         cellLabel.text = items[indexPath.row].title
+        
+        Utility.setCollectionViewCellFont(cell: cellLabel, fontSize: fontSizeList[0])
         
         return cell
     }

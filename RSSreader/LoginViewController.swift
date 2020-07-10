@@ -25,6 +25,10 @@ class LoginViewController: UIViewController {
      
      feedInterval
      → 記事を更新するタイミング
+     
+     fontSize
+     → 0 = 記事一覧の文字サイズ
+     → 1 = その他の文字サイズ
      */
     
     // ユーザー事に登録されている内容      registData
@@ -37,9 +41,19 @@ class LoginViewController: UIViewController {
     fileprivate var userData: [String]!
     // 選択フィード情報
     fileprivate var items = [Item]()
+    // フォントサイズ
+    fileprivate var fontSizeList: [Int]! = [4,4]
     
-    @IBOutlet weak var usernameField: UITextField!
+    @IBOutlet weak var userloginField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+    
+    // 表示ラベル
+    // ラベル「ログインID」
+    @IBOutlet weak var label_loginID: UILabel!
+    // ラベル「パスワード」
+    @IBOutlet weak var label_password: UILabel!
+    // ラベル「ログイン」
+    @IBOutlet weak var label_loginButton: UIButton!
     
     // 新規登録ボタン
     @IBAction func registrationAction(_ sender: UIBarButtonItem) {
@@ -55,7 +69,7 @@ class LoginViewController: UIViewController {
         // 登録情報が有無
         if let registeredData = settings.dictionary(forKey: "registData") {
             
-            if usernameField.text!.isEmpty {
+            if userloginField.text!.isEmpty {
                 alert = UIAlertController(title: "チェック", message: "ユーザーIDが未入力です", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(okButton)
                 self.present(alert, animated: true)
@@ -69,7 +83,7 @@ class LoginViewController: UIViewController {
                 return
             }
             
-            guard let registeredUserdata = registeredData[usernameField.text!] else {
+            guard let registeredUserdata = registeredData[userloginField.text!] else {
                 // ユーザーID非該当
                 alert = UIAlertController(title: "チェック", message: "ユーザーIDが存在しません", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(okButton)
@@ -93,9 +107,14 @@ class LoginViewController: UIViewController {
             // フィード情報
             if let registeredFeedInfo = settings.dictionary(forKey: "feedInfo") {
                 // フィード情報有り
-                if let feedInfo = registeredFeedInfo[usernameField.text!] as? Data {
+                if let feedInfo = registeredFeedInfo[userloginField.text!] as? Data {
                     // フィード登録に情報有り
                     self.items = try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(feedInfo) as! [Item]
+                    // フォントサイズ設定の取得
+                    if let registeredFontSize = settings.dictionary(forKey: "fontSize") {
+                        fontSizeList = registeredFontSize[userloginField.text!] as? [Int]
+                    }
+                    
                     // TableViewの場合
                     if "tableView" == userData[userSetting["displaySelect"]!] {
                         self.performSegue(withIdentifier: "toTableList", sender: self)
@@ -124,10 +143,6 @@ class LoginViewController: UIViewController {
         }
     }
     
-    @IBAction func downSwipe(_ sender: Any) {
-        print("スワイプダウン")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -137,11 +152,7 @@ class LoginViewController: UIViewController {
         //UserDefaults.standard.removeObject(forKey: "registData")
         //UserDefaults.standard.removeObject(forKey: "feedInfo")
         //UserDefaults.standard.removeObject(forKey: "feedInterval")
-        
-    }
-    
-    @IBAction func swipe(_ sender: Any) {
-        print("down")
+        //UserDefaults.standard.removeObject(forKey: "fontSize")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -157,18 +168,21 @@ class LoginViewController: UIViewController {
         print("--purepare--")
         if (segue.identifier == "toTableList") {
             let nextView: ListViewController = (segue.destination as? ListViewController)!
-            nextView.userID = usernameField.text!
+            nextView.userID = userloginField.text!
             nextView.userData = userData
             nextView.items = self.items
+            nextView.fontSizeList = self.fontSizeList
         } else if (segue.identifier == "toCollectionList") {
             let nextView: CollectionViewController = (segue.destination as? CollectionViewController)!
-            nextView.userID = usernameField.text!
+            nextView.userID = userloginField.text!
             nextView.userData = userData
             nextView.items = self.items
+            nextView.fontSizeList = self.fontSizeList
         } else if (segue.identifier == "toRSSSelect") {
             print("toRSSSelect")
             let nextView: RSSSelectViewController = (segue.destination as? RSSSelectViewController)!
-            nextView.userID = usernameField.text!
+            nextView.userID = userloginField.text!
+            nextView.fontSizeList = self.fontSizeList
             print("toRSS end")
         }
     }

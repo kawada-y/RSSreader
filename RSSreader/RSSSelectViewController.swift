@@ -13,12 +13,15 @@ class RSSSelectViewController: UIViewController, UITableViewDataSource, UITableV
     
     @IBOutlet weak var tableView: UITableView!
     
-    //let settings = UserDefaults.standard
-    fileprivate var userData: [String]!
     var userID: String!
+    var fontSizeList: [Int]!
+    fileprivate var userData: [String]!
     fileprivate var feedTitle: String!
     fileprivate var feedAddress: String!
     fileprivate var items: [Item]!
+    
+    fileprivate var backViewNumber: Int!
+    fileprivate var backView: UIViewController!
     
     let feedTitleList = ["Gigazine",
                      "痛いニュース(ﾉ∀`)",
@@ -41,6 +44,7 @@ class RSSSelectViewController: UIViewController, UITableViewDataSource, UITableV
         
         // セル表示
         cell.textLabel?.text = feedTitleList[indexPath.row]
+        Utility.setTableViewCellFont(cell: cell, fontSize: fontSizeList[0])
         return cell
     }
     
@@ -100,9 +104,7 @@ class RSSSelectViewController: UIViewController, UITableViewDataSource, UITableV
                 // ユーザーの更新情報の登録
                 settings.set(registeredData, forKey: "registData")
                 
-                let backViewNumber = (self.navigationController?.viewControllers.count)! - 1
-                let backView = self.navigationController?.viewControllers[backViewNumber]
-                if type(of: backView!) == ConfigViewController.self {
+                if type(of: self.backView!) == ConfigViewController.self {
                     self.performSegue(withIdentifier: "backConfig", sender: nil)
                 } else {
                     self.performSegue(withIdentifier: "toList", sender: nil)
@@ -138,9 +140,11 @@ class RSSSelectViewController: UIViewController, UITableViewDataSource, UITableV
             nextView.userID = self.userID
             nextView.userData = self.userData
             nextView.items = self.items
+            nextView.fontSizeList = self.fontSizeList
         } else if (segue.identifier == "backConfig") {
             let backView: ConfigViewController = (segue.destination as? ConfigViewController)!
             backView.userID = self.userID
+            backView.fontSizeList = self.fontSizeList
         }
     }
     
@@ -148,7 +152,11 @@ class RSSSelectViewController: UIViewController, UITableViewDataSource, UITableV
         super.viewDidLoad()
         
         print("--フィード選択画面--")
-        self.navigationItem.hidesBackButton = true
+        self.backViewNumber = (self.navigationController?.viewControllers.count)! - 2
+        self.backView = self.navigationController?.viewControllers[backViewNumber]
+        if type(of: backView!) == UserRegistViewController.self {
+            self.navigationItem.hidesBackButton = true
+        }
     }
     
     @IBAction func swipeDown(_ sender: Any) {

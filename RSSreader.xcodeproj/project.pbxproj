@@ -25,6 +25,8 @@
 		653579B5249C976700398D76 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653579B4249C976700398D76 /* Item.swift */; };
 		6556BDCE24A58C1000206828 /* RSSIntervalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6556BDCD24A58C1000206828 /* RSSIntervalViewController.swift */; };
 		65801B7F24A1D0BA00F1B0E4 /* DisplaySettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65801B7E24A1D0BA00F1B0E4 /* DisplaySettingViewController.swift */; };
+		65ACE51E24B417B10008AA4D /* ChangeFontViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ACE51D24B417B10008AA4D /* ChangeFontViewController.swift */; };
+		65ACE52024B47F300008AA4D /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ACE51F24B47F300008AA4D /* Utility.swift */; };
 		65B08B3624A5C4210091DCB0 /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B08B3524A5C4210091DCB0 /* Reachability.framework */; };
 		65B08B3824A5E7BE0091DCB0 /* FeedUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B08B3724A5E7BE0091DCB0 /* FeedUpdate.swift */; };
 		65B17DA824AC5711000C513D /* NewsstandKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B17DA724AC5711000C513D /* NewsstandKit.framework */; };
@@ -56,6 +58,8 @@
 		6556BDCD24A58C1000206828 /* RSSIntervalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSIntervalViewController.swift; sourceTree = "<group>"; };
 		6556BDCF24A5A99100206828 /* Reachability.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Reachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65801B7E24A1D0BA00F1B0E4 /* DisplaySettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplaySettingViewController.swift; sourceTree = "<group>"; };
+		65ACE51D24B417B10008AA4D /* ChangeFontViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeFontViewController.swift; sourceTree = "<group>"; };
+		65ACE51F24B47F300008AA4D /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		65B08B3524A5C4210091DCB0 /* Reachability.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Reachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65B08B3724A5E7BE0091DCB0 /* FeedUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedUpdate.swift; sourceTree = "<group>"; };
 		65B17DA724AC5711000C513D /* NewsstandKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NewsstandKit.framework; path = System/Library/Frameworks/NewsstandKit.framework; sourceTree = SDKROOT; };
@@ -122,24 +126,26 @@
 			children = (
 				650A0C092484DC1C008B8CDF /* AppDelegate.swift */,
 				650A0C0B2484DC1C008B8CDF /* SceneDelegate.swift */,
-				650A0C0D2484DC1C008B8CDF /* ViewController.swift */,
-				650A0C0F2484DC1C008B8CDF /* Main.storyboard */,
-				65801B7E24A1D0BA00F1B0E4 /* DisplaySettingViewController.swift */,
-				653579B4249C976700398D76 /* Item.swift */,
-				653579B2249C959000398D76 /* CollectionViewController.swift */,
+				650A0C172484DC25008B8CDF /* Info.plist */,
 				650A0C122484DC25008B8CDF /* Assets.xcassets */,
+				650A0C0F2484DC1C008B8CDF /* Main.storyboard */,
 				650A0C142484DC25008B8CDF /* LaunchScreen.storyboard */,
+				650A0C0D2484DC1C008B8CDF /* ViewController.swift */,
 				652D142E248A3E8E00D8CB22 /* LoginViewController.swift */,
 				652D1430248A412500D8CB22 /* UserRegistViewController.swift */,
 				652D1432248A419100D8CB22 /* RSSSelectViewController.swift */,
-				652D1434248A420000D8CB22 /* ConfigViewController.swift */,
 				652D1436248A425800D8CB22 /* ListViewController.swift */,
+				653579B2249C959000398D76 /* CollectionViewController.swift */,
 				652D143A248A45CB00D8CB22 /* ArticleViewController.swift */,
-				650A0C172484DC25008B8CDF /* Info.plist */,
-				65106B9524A31F5F009C9EFB /* ListInfo.swift */,
+				652D1434248A420000D8CB22 /* ConfigViewController.swift */,
+				65801B7E24A1D0BA00F1B0E4 /* DisplaySettingViewController.swift */,
 				6556BDCD24A58C1000206828 /* RSSIntervalViewController.swift */,
-				65B08B3724A5E7BE0091DCB0 /* FeedUpdate.swift */,
+				65ACE51D24B417B10008AA4D /* ChangeFontViewController.swift */,
+				65ACE51F24B47F300008AA4D /* Utility.swift */,
 				65DCB88224B2E98E004C9F9C /* RefreshP.swift */,
+				65106B9524A31F5F009C9EFB /* ListInfo.swift */,
+				653579B4249C976700398D76 /* Item.swift */,
+				65B08B3724A5E7BE0091DCB0 /* FeedUpdate.swift */,
 			);
 			path = RSSreader;
 			sourceTree = "<group>";
@@ -261,6 +267,8 @@
 			files = (
 				652D142F248A3E8E00D8CB22 /* LoginViewController.swift in Sources */,
 				652D1431248A412500D8CB22 /* UserRegistViewController.swift in Sources */,
+				65ACE52024B47F300008AA4D /* Utility.swift in Sources */,
+				65ACE51E24B417B10008AA4D /* ChangeFontViewController.swift in Sources */,
 				65106B9624A31F5F009C9EFB /* ListInfo.swift in Sources */,
 				650A0C0E2484DC1C008B8CDF /* ViewController.swift in Sources */,
 				650A0C0A2484DC1C008B8CDF /* AppDelegate.swift in Sources */,

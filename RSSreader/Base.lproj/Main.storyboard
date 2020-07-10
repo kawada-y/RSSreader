@@ -204,8 +204,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="label_loginButton" destination="Waf-Td-8Uj" id="bPK-is-e0R"/>
+                        <outlet property="label_loginID" destination="gSv-RM-xw4" id="E8T-o9-zll"/>
+                        <outlet property="label_password" destination="AiF-ud-NY6" id="0gz-vg-grO"/>
                         <outlet property="passwordField" destination="VC4-cf-Xec" id="XaR-5x-k5C"/>
-                        <outlet property="usernameField" destination="c2r-DT-vBc" id="a62-hW-4yo"/>
+                        <outlet property="userloginField" destination="c2r-DT-vBc" id="kaa-V4-wUn"/>
                         <segue destination="aFi-Yr-3va" kind="show" identifier="toRegistration" id="Xtt-l3-zrt"/>
                         <segue destination="Q0J-wP-Rp4" kind="show" identifier="toTableList" id="VO1-hE-LCe"/>
                         <segue destination="qIN-jw-S0B" kind="show" identifier="toCollectionList" id="3P1-zA-lgc"/>
@@ -271,6 +274,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="tableView" destination="Zcn-kZ-9rX" id="VT4-Oa-nhb"/>
                         <segue destination="6f8-86-bMr" kind="show" identifier="toDisplaySetting" id="FN6-Le-CQt"/>
                         <segue destination="4GP-Yj-uh0" kind="show" identifier="toIntervalSetting" id="cIw-Kt-jmo"/>
                         <segue destination="I0j-Nt-6pt" kind="show" identifier="toFontSetting" id="Mxm-2h-9lG"/>
@@ -366,34 +370,46 @@
         <!--文字サイズ変更 設定-->
         <scene sceneID="jRP-f6-xDR">
             <objects>
-                <viewController id="I0j-Nt-6pt" sceneMemberID="viewController">
+                <viewController id="I0j-Nt-6pt" customClass="ChangeFontViewController" customModule="RSSreader" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HEX-4i-x66">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="記事一覧表示" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qU3-Nm-ixH">
+                                <rect key="frame" x="91" y="158" width="146" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5ix-iL-3Yz">
+                                <rect key="frame" x="300" y="67" width="400" height="210"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </pickerView>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zgm-BH-a7B">
+                                <rect key="frame" x="300" y="404" width="400" height="210"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="その他表示" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h2b-B0-OEm">
+                                <rect key="frame" x="101" y="494" width="127" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="tDd-31-D16"/>
                     </view>
                     <navigationItem key="navigationItem" title="文字サイズ変更 設定" id="Pf2-jq-uxO"/>
+                    <connections>
+                        <outlet property="listFontPicker" destination="5ix-iL-3Yz" id="ar8-GF-AgE"/>
+                        <outlet property="otherFontPicker" destination="zgm-BH-a7B" id="Wmj-ft-uEB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AUt-AK-rMj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4538" y="2255"/>
-        </scene>
-        <!--購読RSS管理 設定-->
-        <scene sceneID="0pN-Jf-nc8">
-            <objects>
-                <viewController id="7G4-Hr-acG" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="F23-yr-qUe">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="GZE-1K-amW"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="購読RSS管理 設定" id="gTd-eu-aoR"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DgK-3S-TfE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3495" y="2742"/>
+            <point key="canvasLocation" x="4537.5" y="2254.6875"/>
         </scene>
         <!--User Regist View Controller-->
         <scene sceneID="rl0-15-rKF">
@@ -451,6 +467,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="LY8-KO-P4S"/>
                     <connections>
+                        <outlet property="label_password" destination="agG-Gt-nUl" id="F6W-XI-9kD"/>
+                        <outlet property="label_regist" destination="Ogc-bY-Ojj" id="UsT-Oz-lb2"/>
+                        <outlet property="label_userID" destination="UHK-ZE-azG" id="izr-8e-CY2"/>
                         <outlet property="registID" destination="daa-rq-AfZ" id="eyJ-a5-dvO"/>
                         <outlet property="registPass" destination="UqO-bY-I3k" id="qFi-r4-MbA"/>
                         <segue destination="cJB-vd-24o" kind="show" identifier="toRSSSelect" id="3lU-pO-6Dv"/>
@@ -574,7 +593,7 @@
         <segue reference="UDA-Zx-X5R"/>
         <segue reference="JtL-lu-yTZ"/>
         <segue reference="nHw-aE-VYW"/>
-        <segue reference="l8z-ZI-eph"/>
+        <segue reference="sIq-qZ-bdX"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="check_off" width="106" height="106"/>

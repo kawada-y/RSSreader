@@ -18,8 +18,18 @@ extension Dictionary {
 
 class UserRegistViewController: UIViewController {
     
+    fileprivate let fontSizeList: [Int]! = [4,4]
+    
     @IBOutlet weak var registID: UITextField!
     @IBOutlet weak var registPass: UITextField!
+    
+    // 表示ラベル
+    // ラベル「ユーザーID」
+    @IBOutlet weak var label_userID: UILabel!
+    // ラベル「パスワード」
+    @IBOutlet weak var label_password: UILabel!
+    // ラベル「登録」
+    @IBOutlet weak var label_regist: UIButton!
     
     // 登録ボタン
     @IBAction func registAction(_ sender: UIButton) {
@@ -76,23 +86,14 @@ class UserRegistViewController: UIViewController {
         super.viewDidLoad()
         
         print("--登録画面--")
-        
-        // test
-        let c = (self.navigationController?.viewControllers.count)! - 1
-        print(c)
-        let v = self.navigationController?.viewControllers[1]
-        print(v!)
-        if type(of: v!) == UserRegistViewController.self {
-            print("一致")
-        }
-        print(type(of: v!) == UserRegistViewController.self)
-        print(UserRegistViewController.self)
+        Utility.setFont(view: self, fontSize: fontSizeList[1])
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "toRSSSelect") {
             let nextView: RSSSelectViewController = (segue.destination as? RSSSelectViewController)!
             nextView.userID = registID.text!
+            nextView.fontSizeList = self.fontSizeList
         }
     }
 }
