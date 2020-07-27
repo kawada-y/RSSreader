@@ -7,9 +7,8 @@
 //
 
 import Foundation
-import CoreLocation
 
-class FeedUpdate: Operation, CLLocationManagerDelegate {
+class FeedUpdate: Operation {
     
     static var timer = Timer()
     

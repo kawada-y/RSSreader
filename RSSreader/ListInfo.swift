@@ -8,7 +8,7 @@
 
 import UIKit
 import Reachability
-
+import RealmSwift
 
 class ListInfo: ViewController, XMLParserDelegate {
     
@@ -19,10 +19,15 @@ class ListInfo: ViewController, XMLParserDelegate {
         }
     }
     
+    
+    
     var parser: XMLParser!
     var items = [Item]()
     var item: Item?
     var currentString = ""
+    
+    var realmDB: RealmDB?
+    var itemDB: ItemDB?
     
     func startDownload(_ selectfeed: String, view: UIViewController?) -> Bool {
         print("startDownload")
@@ -31,6 +36,7 @@ class ListInfo: ViewController, XMLParserDelegate {
         if Network.isOnline() {
             // オンライン時
             self.items = []
+            realmDB = RealmDB()
             if let url = URL(string: selectfeed) {
                 if let parser = XMLParser(contentsOf: url) {
                     self.parser = parser
@@ -71,6 +77,7 @@ class ListInfo: ViewController, XMLParserDelegate {
         self.currentString = ""
         if elementName == "item" {
             self.item = Item()
+            self.itemDB = ItemDB()                                      //
         }
     }
     
@@ -84,11 +91,20 @@ class ListInfo: ViewController, XMLParserDelegate {
                 qualifiedName qName: String?) {
         switch elementName {
         case "title": self.item?.title = currentString
+            self.itemDB?.title = currentString                          // title
         case "link": self.item?.link = currentString
+        self.itemDB?.link = currentString                               // link
             if let url = URL(string: currentString) {
-                item?.requestData = URLRequest(url: url)
+                self.item?.requestData = URLRequest(url: url)
+                self.itemDB?.requestData = currentString                // requestData
             }
         case "item": self.items.append(self.item!)
+            realmDB?.items.append(self.itemDB!)
+        
+            let realm = try! Realm()
+            try! realm.write {
+                realm.add(self.itemDB!)
+            }
         case "content:encoded":
             guard let range = currentString.range(of: "<img src=") else { return }
             let start = currentString.index(range.lowerBound, offsetBy: 10)
@@ -96,7 +112,10 @@ class ListInfo: ViewController, XMLParserDelegate {
             let end = range2.lowerBound
             let imageURL = String(currentString[start..<end])
             self.item?.image = URL(string: imageURL)
+            self.itemDB?.image = imageURL                                // image
         default: break
         }
+        print(elementName)
+        print(currentString)
     }
 }

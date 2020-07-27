@@ -15,12 +15,14 @@
 		650A0C132484DC25008B8CDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 650A0C122484DC25008B8CDF /* Assets.xcassets */; };
 		650A0C162484DC25008B8CDF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 650A0C142484DC25008B8CDF /* LaunchScreen.storyboard */; };
 		65106B9624A31F5F009C9EFB /* ListInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65106B9524A31F5F009C9EFB /* ListInfo.swift */; };
+		65169B3824C7EAA9005FB1DE /* RealmDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65169B3724C7EAA9005FB1DE /* RealmDB.swift */; };
 		652D142F248A3E8E00D8CB22 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652D142E248A3E8E00D8CB22 /* LoginViewController.swift */; };
 		652D1431248A412500D8CB22 /* UserRegistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652D1430248A412500D8CB22 /* UserRegistViewController.swift */; };
 		652D1433248A419100D8CB22 /* RSSSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652D1432248A419100D8CB22 /* RSSSelectViewController.swift */; };
 		652D1435248A420000D8CB22 /* ConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652D1434248A420000D8CB22 /* ConfigViewController.swift */; };
 		652D1437248A425800D8CB22 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652D1436248A425800D8CB22 /* ListViewController.swift */; };
 		652D143B248A45CB00D8CB22 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652D143A248A45CB00D8CB22 /* ArticleViewController.swift */; };
+		6533D97C24C13FD2006F72D0 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6533D97B24C13FD2006F72D0 /* RealmSwift.framework */; };
 		653579B3249C959000398D76 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653579B2249C959000398D76 /* CollectionViewController.swift */; };
 		653579B5249C976700398D76 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653579B4249C976700398D76 /* Item.swift */; };
 		6556BDCE24A58C1000206828 /* RSSIntervalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6556BDCD24A58C1000206828 /* RSSIntervalViewController.swift */; };
@@ -29,7 +31,7 @@
 		65ACE52024B47F300008AA4D /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ACE51F24B47F300008AA4D /* Utility.swift */; };
 		65B08B3624A5C4210091DCB0 /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B08B3524A5C4210091DCB0 /* Reachability.framework */; };
 		65B08B3824A5E7BE0091DCB0 /* FeedUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B08B3724A5E7BE0091DCB0 /* FeedUpdate.swift */; };
-		65B17DA824AC5711000C513D /* NewsstandKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B17DA724AC5711000C513D /* NewsstandKit.framework */; };
+		65B2989824BDA58200AF8E43 /* RealmTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B2989724BDA58200AF8E43 /* RealmTest.swift */; };
 		65DCB88324B2E98E004C9F9C /* RefreshP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DCB88224B2E98E004C9F9C /* RefreshP.swift */; };
 		6D1B88DFBC8D5477EAC77A26 /* Pods_RSSreader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B1545618B508CB287C73AF2 /* Pods_RSSreader.framework */; };
 /* End PBXBuildFile section */
@@ -47,12 +49,14 @@
 		650A0C152484DC25008B8CDF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		650A0C172484DC25008B8CDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65106B9524A31F5F009C9EFB /* ListInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListInfo.swift; sourceTree = "<group>"; };
+		65169B3724C7EAA9005FB1DE /* RealmDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDB.swift; sourceTree = "<group>"; };
 		652D142E248A3E8E00D8CB22 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		652D1430248A412500D8CB22 /* UserRegistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegistViewController.swift; sourceTree = "<group>"; };
 		652D1432248A419100D8CB22 /* RSSSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSSelectViewController.swift; sourceTree = "<group>"; };
 		652D1434248A420000D8CB22 /* ConfigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigViewController.swift; sourceTree = "<group>"; };
 		652D1436248A425800D8CB22 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		652D143A248A45CB00D8CB22 /* ArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
+		6533D97B24C13FD2006F72D0 /* RealmSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		653579B2249C959000398D76 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		653579B4249C976700398D76 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		6556BDCD24A58C1000206828 /* RSSIntervalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSIntervalViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +67,9 @@
 		65B08B3524A5C4210091DCB0 /* Reachability.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Reachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65B08B3724A5E7BE0091DCB0 /* FeedUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedUpdate.swift; sourceTree = "<group>"; };
 		65B17DA724AC5711000C513D /* NewsstandKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NewsstandKit.framework; path = System/Library/Frameworks/NewsstandKit.framework; sourceTree = SDKROOT; };
+		65B2989724BDA58200AF8E43 /* RealmTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmTest.swift; sourceTree = "<group>"; };
+		65B2989924BDA80D00AF8E43 /* RealmSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		65D5EBA624BECE3C00E830AC /* Realm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Realm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65DCB88224B2E98E004C9F9C /* RefreshP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshP.swift; sourceTree = "<group>"; };
 		CFBE6A645FB9F8F253592DFE /* Pods-RSSreader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSSreader.release.xcconfig"; path = "Target Support Files/Pods-RSSreader/Pods-RSSreader.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -72,7 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65B17DA824AC5711000C513D /* NewsstandKit.framework in Frameworks */,
+				6533D97C24C13FD2006F72D0 /* RealmSwift.framework in Frameworks */,
 				65B08B3624A5C4210091DCB0 /* Reachability.framework in Frameworks */,
 				65063CBF249C53FF006217F5 /* WebKit.framework in Frameworks */,
 				6D1B88DFBC8D5477EAC77A26 /* Pods_RSSreader.framework in Frameworks */,
@@ -94,6 +101,9 @@
 		65063CBD249C53FF006217F5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6533D97B24C13FD2006F72D0 /* RealmSwift.framework */,
+				65D5EBA624BECE3C00E830AC /* Realm.framework */,
+				65B2989924BDA80D00AF8E43 /* RealmSwift.framework */,
 				65B17DA724AC5711000C513D /* NewsstandKit.framework */,
 				65B08B3524A5C4210091DCB0 /* Reachability.framework */,
 				6556BDCF24A5A99100206828 /* Reachability.framework */,
@@ -145,7 +155,9 @@
 				65DCB88224B2E98E004C9F9C /* RefreshP.swift */,
 				65106B9524A31F5F009C9EFB /* ListInfo.swift */,
 				653579B4249C976700398D76 /* Item.swift */,
+				65169B3724C7EAA9005FB1DE /* RealmDB.swift */,
 				65B08B3724A5E7BE0091DCB0 /* FeedUpdate.swift */,
+				65B2989724BDA58200AF8E43 /* RealmTest.swift */,
 			);
 			path = RSSreader;
 			sourceTree = "<group>";
@@ -270,10 +282,12 @@
 				65ACE52024B47F300008AA4D /* Utility.swift in Sources */,
 				65ACE51E24B417B10008AA4D /* ChangeFontViewController.swift in Sources */,
 				65106B9624A31F5F009C9EFB /* ListInfo.swift in Sources */,
+				65B2989824BDA58200AF8E43 /* RealmTest.swift in Sources */,
 				650A0C0E2484DC1C008B8CDF /* ViewController.swift in Sources */,
 				650A0C0A2484DC1C008B8CDF /* AppDelegate.swift in Sources */,
 				65801B7F24A1D0BA00F1B0E4 /* DisplaySettingViewController.swift in Sources */,
 				653579B5249C976700398D76 /* Item.swift in Sources */,
+				65169B3824C7EAA9005FB1DE /* RealmDB.swift in Sources */,
 				65DCB88324B2E98E004C9F9C /* RefreshP.swift in Sources */,
 				652D1435248A420000D8CB22 /* ConfigViewController.swift in Sources */,
 				650A0C0C2484DC1C008B8CDF /* SceneDelegate.swift in Sources */,

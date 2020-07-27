@@ -7,9 +7,12 @@
 //
 
 import UIKit
-import BackgroundTasks
+import RealmSwift
 
 class LoginViewController: UIViewController {
+    
+    // Realm (DB) テスト
+    
     
     /*
      情報
@@ -30,6 +33,9 @@ class LoginViewController: UIViewController {
      → 0 = 記事一覧の文字サイズ
      → 1 = その他の文字サイズ
      */
+    
+    // DB
+    var realm: Realm?
     
     // ユーザー事に登録されている内容      registData
     fileprivate let userSetting: [String:Int] = ["password": 0,
@@ -115,6 +121,23 @@ class LoginViewController: UIViewController {
                         fontSizeList = registeredFontSize[userloginField.text!] as? [Int]
                     }
                     
+                    // RealmDB テスト　ここから
+                    let realmDB = realm?.objects(RealmDB.self).filter("userID == '\(userloginField.text!)'")
+                    
+                    print(realmDB![0].userID!)
+                    print(realmDB![0].items.count)
+                    for item in realmDB![0].items {
+                        let ob = Item()
+                        ob.title = item.title
+                        ob.link = item.link
+                        ob.image = URL(string: item.image ?? "")
+                        let url = URL(string: item.requestData!)
+                        ob.requestData = URLRequest(url: url!)
+                        
+                        self.items.append(ob)
+                    }
+                    // ここまで
+                    
                     // TableViewの場合
                     if "tableView" == userData[userSetting["displaySelect"]!] {
                         self.performSegue(withIdentifier: "toTableList", sender: self)
@@ -153,6 +176,20 @@ class LoginViewController: UIViewController {
         //UserDefaults.standard.removeObject(forKey: "feedInfo")
         //UserDefaults.standard.removeObject(forKey: "feedInterval")
         //UserDefaults.standard.removeObject(forKey: "fontSize")
+        
+        // Realm DBアドレス
+        //let url = Realm.Configuration.defaultConfiguration.fileURL!
+        // DB削除？
+        //try! FileManager.default.removeItem(at: url)
+        
+        //print(url)
+        
+        // テスト　DB
+        realm = try! Realm()
+        let it = realm!.objects(ItemDB.self)
+        let re = realm!.objects(RealmDB.self)
+        print(it.count)
+        print(re.count)
     }
     
     override func viewWillAppear(_ animated: Bool) {

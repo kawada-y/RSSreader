@@ -6,7 +6,7 @@
 //  Copyright © 2020 kawada-y. All rights reserved.
 //
 
-import Foundation
+//import Foundation
 import UIKit
 
 class ListViewController: UITableViewController, XMLParserDelegate, RefreshP {

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import BackgroundTasks
+import RealmSwift
 
 class RSSSelectViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -18,6 +18,9 @@ class RSSSelectViewController: UIViewController, UITableViewDataSource, UITableV
     fileprivate var userData: [String]!
     fileprivate var feedTitle: String!
     fileprivate var feedAddress: String!
+    
+    fileprivate var realmDB: RealmDB?
+    
     fileprivate var items: [Item]!
     
     fileprivate var backViewNumber: Int!
@@ -72,6 +75,15 @@ class RSSSelectViewController: UIViewController, UITableViewDataSource, UITableV
                 // フィード接続　OK
                 self.items = feedInfo.items
                 let feedData = try! NSKeyedArchiver.archivedData(withRootObject: self.items!, requiringSecureCoding: false)
+                
+                self.realmDB = feedInfo.realmDB
+                self.realmDB?.userID = self.userID
+                
+                let realm = try! Realm()
+                try! realm.write {
+                    realm.add(self.realmDB!)
+                }
+                
                 // 登録するフィード情報
                 let registrationFeedInfo: [String:Data] = [self.userID : feedData]
                 // 登録ユーザーフィード情報
