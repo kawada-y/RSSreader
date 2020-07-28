@@ -63,7 +63,7 @@ class CollectionViewController: UICollectionViewController, XMLParserDelegate, R
     func updateRefresh() {
         let settings = UserDefaults.standard
         let feedInfo = ListInfo()
-        if feedInfo.startDownload(self.userData[2], view: self) {
+        if feedInfo.startDownload(self.userData[2], userID: userID, checkChange: true, view: self) {
             // フィード接続　OK
             let items = feedInfo.items
             self.items = items

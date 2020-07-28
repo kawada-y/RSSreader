@@ -29,9 +29,15 @@ class ListInfo: ViewController, XMLParserDelegate {
     var realmDB: RealmDB?
     var itemDB: ItemDB?
     
-    func startDownload(_ selectfeed: String, view: UIViewController?) -> Bool {
+    var userID = ""
+    var checkChange: Bool!
+    
+    func startDownload(_ selectfeed: String, userID: String, checkChange: Bool, view: UIViewController?) -> Bool {
         print("startDownload")
         print(selectfeed)
+        
+        self.userID = userID
+        self.checkChange = checkChange
         
         if Network.isOnline() {
             // オンライン時
@@ -93,7 +99,7 @@ class ListInfo: ViewController, XMLParserDelegate {
         case "title": self.item?.title = currentString
             self.itemDB?.title = currentString                          // title
         case "link": self.item?.link = currentString
-        self.itemDB?.link = currentString                               // link
+            self.itemDB?.link = currentString                               // link
             if let url = URL(string: currentString) {
                 self.item?.requestData = URLRequest(url: url)
                 self.itemDB?.requestData = currentString                // requestData
@@ -102,8 +108,19 @@ class ListInfo: ViewController, XMLParserDelegate {
             realmDB?.items.append(self.itemDB!)
         
             let realm = try! Realm()
-            try! realm.write {
-                realm.add(self.itemDB!)
+            
+            if (checkChange) {
+                print(userID)
+                var userDB = realm.objects(RealmDB.self).filter("userID == '\(self.userID)'")
+                //var userItemDB = realm.objects(ItemDB.self)
+                try! realm.write {
+                    realm.add(self.itemDB!)
+                    userDB[0].items.append(self.itemDB!)
+                }
+            } else {
+               try! realm.write {
+                    realm.add(self.itemDB!)
+                }
             }
         case "content:encoded":
             guard let range = currentString.range(of: "<img src=") else { return }
@@ -115,7 +132,7 @@ class ListInfo: ViewController, XMLParserDelegate {
             self.itemDB?.image = imageURL                                // image
         default: break
         }
-        print(elementName)
-        print(currentString)
+        //print(elementName)
+        //print(currentString)
     }
 }

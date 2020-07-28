@@ -61,7 +61,7 @@ class FeedUpdate: Operation {
             let settings = UserDefaults.standard
             
             let feedInfo = ListInfo()
-            if feedInfo.startDownload(self.feedAddress, view: nil) {
+        if feedInfo.startDownload(self.feedAddress, userID: userID, checkChange: true, view: nil) {
                 // フィード接続　OK
                 let items = feedInfo.items
                 let feedData = try! NSKeyedArchiver.archivedData(withRootObject: items, requiringSecureCoding: false)
@@ -91,7 +91,7 @@ class FeedUpdate: Operation {
         DispatchQueue.main.async {
             let feedInfo = ListInfo()
             
-            if feedInfo.startDownload(FeedUpdate.feedAddress, view: nil) {
+            if feedInfo.startDownload(FeedUpdate.feedAddress, userID: FeedUpdate.userID, checkChange: true, view: nil) {
                 // フィード接続　OK
                 let items = feedInfo.items
                 let feedData = try! NSKeyedArchiver.archivedData(withRootObject: items, requiringSecureCoding: false)

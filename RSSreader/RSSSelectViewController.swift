@@ -71,11 +71,12 @@ class RSSSelectViewController: UIViewController, UITableViewDataSource, UITableV
             // フィード情報の作成
             let feedInfo = ListInfo()
             
-            if feedInfo.startDownload(self.feedAddress, view: self) {
+            if feedInfo.startDownload(self.feedAddress, userID: self.userID, checkChange: false, view: self) {
                 // フィード接続　OK
                 self.items = feedInfo.items
                 let feedData = try! NSKeyedArchiver.archivedData(withRootObject: self.items!, requiringSecureCoding: false)
                 
+                // Realm DB
                 self.realmDB = feedInfo.realmDB
                 self.realmDB?.userID = self.userID
                 

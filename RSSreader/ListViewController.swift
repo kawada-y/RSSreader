@@ -8,8 +8,14 @@
 
 //import Foundation
 import UIKit
+import RealmSwift
 
 class ListViewController: UITableViewController, XMLParserDelegate, RefreshP {
+    
+    
+    // DB
+    fileprivate var realm: Realm?
+    fileprivate var realmDB: RealmDB?
     
     var userID: String!
     var userData: [String]!
@@ -51,7 +57,8 @@ class ListViewController: UITableViewController, XMLParserDelegate, RefreshP {
         tableTitle.title = userData[1]
         self.tableView.reloadData()
         
-        //self.extendedLayoutIncludesOpaqueBars = true //
+        // テスト　DB
+        realm = try! Realm()
         
         // リフレッシュ更新
         refreshAction()
@@ -67,12 +74,25 @@ class ListViewController: UITableViewController, XMLParserDelegate, RefreshP {
     @objc func updateRefresh() {
         let settings = UserDefaults.standard
         let feedInfo = ListInfo()
-        if feedInfo.startDownload(self.userData[2], view: self) {
+        if feedInfo.startDownload(self.userData[2], userID: userID, checkChange: true, view: self) {
             // フィード接続　OK
             let items = feedInfo.items
             self.items = items
             let feedData = try! NSKeyedArchiver.archivedData(withRootObject: items, requiringSecureCoding: false)
-
+            
+            var userDB = realm?.objects(RealmDB.self).filter("userID == '\(self.userID!)'")
+            
+            // Realm DB
+            self.realmDB = feedInfo.realmDB
+            self.realmDB?.userID = self.userID
+            
+            let realm = try! Realm()
+            try! realm.write {
+                for item in self.realmDB!.items {
+                    userDB![0].items.append(item)
+                }
+            }
+            
             // 登録ユーザーフィード情報
             var registeredFeedInfo = settings.dictionary(forKey: "feedInfo")
             var userFeedInfo = registeredFeedInfo![userID]

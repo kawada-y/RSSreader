@@ -12,7 +12,7 @@ import RealmSwift
 class RealmDB: Object {
     @objc dynamic var userID: String?
     
-    let items = List<ItemDB>()
+    var items = List<ItemDB>()
     
     override static func primaryKey() -> String? {
         return "userID"

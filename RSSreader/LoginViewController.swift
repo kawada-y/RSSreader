@@ -115,7 +115,7 @@ class LoginViewController: UIViewController {
                 // フィード情報有り
                 if let feedInfo = registeredFeedInfo[userloginField.text!] as? Data {
                     // フィード登録に情報有り
-                    self.items = try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(feedInfo) as! [Item]
+                    //self.items = try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(feedInfo) as! [Item]
                     // フォントサイズ設定の取得
                     if let registeredFontSize = settings.dictionary(forKey: "fontSize") {
                         fontSizeList = registeredFontSize[userloginField.text!] as? [Int]
@@ -126,6 +126,9 @@ class LoginViewController: UIViewController {
                     
                     print(realmDB![0].userID!)
                     print(realmDB![0].items.count)
+                    
+                    var ii = [Item]()
+                    
                     for item in realmDB![0].items {
                         let ob = Item()
                         ob.title = item.title
@@ -136,6 +139,7 @@ class LoginViewController: UIViewController {
                         
                         self.items.append(ob)
                     }
+                    print("ii = \(ii.count)")
                     // ここまで
                     
                     // TableViewの場合
