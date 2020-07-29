@@ -176,17 +176,17 @@ class LoginViewController: UIViewController {
         print("--start ログイン画面--")
         self.navigationItem.hidesBackButton = true
         
-        //UserDefaults.standard.removeObject(forKey: "registData")
-        //UserDefaults.standard.removeObject(forKey: "feedInfo")
-        //UserDefaults.standard.removeObject(forKey: "feedInterval")
-        //UserDefaults.standard.removeObject(forKey: "fontSize")
-        
-        // Realm DBアドレス
-        //let url = Realm.Configuration.defaultConfiguration.fileURL!
-        // DB削除？
-        //try! FileManager.default.removeItem(at: url)
-        
-        //print(url)
+        if (true) {
+            UserDefaults.standard.removeObject(forKey: "registData")
+            UserDefaults.standard.removeObject(forKey: "feedInfo")
+            UserDefaults.standard.removeObject(forKey: "feedInterval")
+            UserDefaults.standard.removeObject(forKey: "fontSize")
+            
+            // Realm DBアドレス
+            let url = Realm.Configuration.defaultConfiguration.fileURL!
+            // DB削除？
+            try! FileManager.default.removeItem(at: url)
+        }
         
         // テスト　DB
         realm = try! Realm()

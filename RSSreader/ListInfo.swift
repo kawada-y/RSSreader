@@ -35,6 +35,7 @@ class ListInfo: ViewController, XMLParserDelegate {
     func startDownload(_ selectfeed: String, userID: String, checkChange: Bool, view: UIViewController?) -> Bool {
         print("startDownload")
         print(selectfeed)
+        print("startDownload \(checkChange)")
         
         self.userID = userID
         self.checkChange = checkChange
@@ -109,19 +110,22 @@ class ListInfo: ViewController, XMLParserDelegate {
         
             let realm = try! Realm()
             
-            if (checkChange) {
-                print(userID)
-                var userDB = realm.objects(RealmDB.self).filter("userID == '\(self.userID)'")
-                //var userItemDB = realm.objects(ItemDB.self)
-                try! realm.write {
-                    realm.add(self.itemDB!)
-                    userDB[0].items.append(self.itemDB!)
-                }
-            } else {
+//            if (checkChange) {
+//                print(userID)
+//                let userDB = realm.objects(RealmDB.self).filter("userID == '\(self.userID)'")
+//                for item in userDB[0].items {
+//                    if self.itemDB?.title != item.title {
+//                        try! realm.write {
+//                            realm.add(self.itemDB!)
+//                            userDB[0].items.append(self.itemDB!)
+//                        }
+//                    }
+//                }
+//            } else {
                try! realm.write {
                     realm.add(self.itemDB!)
-                }
             }
+//            }
         case "content:encoded":
             guard let range = currentString.range(of: "<img src=") else { return }
             let start = currentString.index(range.lowerBound, offsetBy: 10)

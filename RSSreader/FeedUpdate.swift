@@ -23,7 +23,6 @@ class FeedUpdate: Operation {
         self.userID = userID
         self.feedAddress = feedAddress
         self.timeInterval = defaultTimeInterval
-        startUpdate()
     }
     
     // 変更時
@@ -56,11 +55,11 @@ class FeedUpdate: Operation {
     @objc static func feedUpdate() {
         // グローバルキューで実行
         //DispatchQueue.global().async {
-            // 更新処理
-            //print(NSDate().description)
-            let settings = UserDefaults.standard
-            
-            let feedInfo = ListInfo()
+        // 更新処理
+        //print(NSDate().description)
+        let settings = UserDefaults.standard
+        
+        let feedInfo = ListInfo()
         if feedInfo.startDownload(self.feedAddress, userID: userID, checkChange: true, view: nil) {
                 // フィード接続　OK
                 let items = feedInfo.items

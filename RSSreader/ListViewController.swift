@@ -77,7 +77,6 @@ class ListViewController: UITableViewController, XMLParserDelegate, RefreshP {
         if feedInfo.startDownload(self.userData[2], userID: userID, checkChange: true, view: self) {
             // フィード接続　OK
             let items = feedInfo.items
-            self.items = items
             let feedData = try! NSKeyedArchiver.archivedData(withRootObject: items, requiringSecureCoding: false)
             
             var userDB = realm?.objects(RealmDB.self).filter("userID == '\(self.userID!)'")
@@ -88,8 +87,17 @@ class ListViewController: UITableViewController, XMLParserDelegate, RefreshP {
             
             let realm = try! Realm()
             try! realm.write {
-                for item in self.realmDB!.items {
-                    userDB![0].items.append(item)
+                for realmItem in self.realmDB!.items {
+                    var check = false
+                    for userItem in userDB![0].items {
+                        if realmItem.title == userItem.title {
+                            check = true
+                            break;
+                        }
+                    }
+                    if (!check) {
+                        userDB![0].items.append(realmItem)
+                    }
                 }
             }
             
