@@ -79,7 +79,7 @@ class ListViewController: UITableViewController, XMLParserDelegate, RefreshP {
             let items = feedInfo.items
             let feedData = try! NSKeyedArchiver.archivedData(withRootObject: items, requiringSecureCoding: false)
             
-            var userDB = realm?.objects(RealmDB.self).filter("userID == '\(self.userID!)'")
+            let userDB = realm?.objects(RealmDB.self).filter("userID == '\(self.userID!)'")
             
             // Realm DB
             self.realmDB = feedInfo.realmDB

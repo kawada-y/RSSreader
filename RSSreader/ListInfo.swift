@@ -107,25 +107,6 @@ class ListInfo: ViewController, XMLParserDelegate {
             }
         case "item": self.items.append(self.item!)
             realmDB?.items.append(self.itemDB!)
-        
-            let realm = try! Realm()
-            
-//            if (checkChange) {
-//                print(userID)
-//                let userDB = realm.objects(RealmDB.self).filter("userID == '\(self.userID)'")
-//                for item in userDB[0].items {
-//                    if self.itemDB?.title != item.title {
-//                        try! realm.write {
-//                            realm.add(self.itemDB!)
-//                            userDB[0].items.append(self.itemDB!)
-//                        }
-//                    }
-//                }
-//            } else {
-               try! realm.write {
-                    realm.add(self.itemDB!)
-            }
-//            }
         case "content:encoded":
             guard let range = currentString.range(of: "<img src=") else { return }
             let start = currentString.index(range.lowerBound, offsetBy: 10)

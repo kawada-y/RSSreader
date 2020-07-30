@@ -121,13 +121,11 @@ class LoginViewController: UIViewController {
                         fontSizeList = registeredFontSize[userloginField.text!] as? [Int]
                     }
                     
-                    // RealmDB テスト　ここから
+                    // RealmDB　ここから
                     let realmDB = realm?.objects(RealmDB.self).filter("userID == '\(userloginField.text!)'")
                     
                     print(realmDB![0].userID!)
                     print(realmDB![0].items.count)
-                    
-                    var ii = [Item]()
                     
                     for item in realmDB![0].items {
                         let ob = Item()
@@ -139,7 +137,6 @@ class LoginViewController: UIViewController {
                         
                         self.items.append(ob)
                     }
-                    print("ii = \(ii.count)")
                     // ここまで
                     
                     // TableViewの場合
@@ -176,7 +173,8 @@ class LoginViewController: UIViewController {
         print("--start ログイン画面--")
         self.navigationItem.hidesBackButton = true
         
-        if (true) {
+        // UserDefaults設定と、RealmDBの初期化 (true時)
+        if (false) {
             UserDefaults.standard.removeObject(forKey: "registData")
             UserDefaults.standard.removeObject(forKey: "feedInfo")
             UserDefaults.standard.removeObject(forKey: "feedInterval")
@@ -188,12 +186,12 @@ class LoginViewController: UIViewController {
             try! FileManager.default.removeItem(at: url)
         }
         
-        // テスト　DB
+        // DB
         realm = try! Realm()
-        let it = realm!.objects(ItemDB.self)
         let re = realm!.objects(RealmDB.self)
-        print(it.count)
-        print(re.count)
+        let it = realm!.objects(ItemDB.self)
+        print("ユーザー数　\(re.count)")
+        print("登録されている記事の数　\(it.count)")
     }
     
     override func viewWillAppear(_ animated: Bool) {

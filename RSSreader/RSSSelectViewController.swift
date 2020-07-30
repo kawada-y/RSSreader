@@ -26,12 +26,14 @@ class RSSSelectViewController: UIViewController, UITableViewDataSource, UITableV
     fileprivate var backViewNumber: Int!
     fileprivate var backView: UIViewController!
     
+    // 記事一覧　タイトル
     let feedTitleList = ["Gigazine",
                      "痛いニュース(ﾉ∀`)",
                      "オレ的ゲーム速報＠刃",
                      "窓の社",
                      "WIRED"]
     
+    // 現在フィードは固定
     let feedAddressList = ["https://gigazine.net/news/rss_2.0/",
                        "http://blog.livedoor.jp/dqnplus/index.rdf",
                        "http://jin115.com/index.rdf",
@@ -172,7 +174,8 @@ class RSSSelectViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
+    // テスト
     @IBAction func swipeDown(_ sender: Any) {
-        print("スパイプ")
+        print("スワイプ")
     }
 }
