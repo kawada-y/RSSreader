@@ -7,10 +7,15 @@
 //
 
 import UIKit
+import RealmSwift
 
 private let reuseIdentifier = "articleCell2"
 
 class CollectionViewController: UICollectionViewController, XMLParserDelegate, RefreshP {
+    
+    // DB
+    fileprivate var realm: Realm?
+    fileprivate var realmDB: RealmDB?
     
     var userID: String!
     var userData: [String]!
@@ -46,9 +51,10 @@ class CollectionViewController: UICollectionViewController, XMLParserDelegate, R
         self.navigationItem.hidesBackButton = true
         
         tableTitle.title = userData[1]
-        //startDownload(userData[2])
-        
         self.collectionView.reloadData()
+        
+        // テスト　DB
+        realm = try! Realm()
         
         refreshAction()
     }
@@ -68,7 +74,43 @@ class CollectionViewController: UICollectionViewController, XMLParserDelegate, R
             let items = feedInfo.items
             self.items = items
             let feedData = try! NSKeyedArchiver.archivedData(withRootObject: items, requiringSecureCoding: false)
-
+            
+            let userDB = realm?.objects(RealmDB.self).filter("userID == '\(self.userID!)'")
+            
+            // Realm DB
+            self.realmDB = feedInfo.realmDB
+            self.realmDB?.userID = self.userID
+            
+            let realm = try! Realm()
+            var number = 0
+            try! realm.write {
+                for realmItem in self.realmDB!.items {
+                    var check = false
+                    for userItem in userDB![0].items {
+                        if realmItem.title == userItem.title {
+                            check = true
+                            break;
+                        }
+                    }
+                    if (!check) {
+                        userDB![0].items.insert(realmItem, at: number)
+                        number += 1
+                    }
+                }
+            }
+            
+            self.items = [Item]()
+            for item in userDB![0].items {
+                let ob = Item()
+                ob.title = item.title
+                ob.link = item.link
+                ob.image = URL(string: item.image ?? "")
+                let url = URL(string: item.requestData!)
+                ob.requestData = URLRequest(url: url!)
+                
+                self.items.append(ob)
+            }
+            
             // 登録ユーザーフィード情報
             var registeredFeedInfo = settings.dictionary(forKey: "feedInfo")
             var userFeedInfo = registeredFeedInfo![userID]

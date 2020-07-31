@@ -12,7 +12,6 @@ import RealmSwift
 
 class ListViewController: UITableViewController, XMLParserDelegate, RefreshP {
     
-    
     // DB
     fileprivate var realm: Realm?
     fileprivate var realmDB: RealmDB?
@@ -76,8 +75,9 @@ class ListViewController: UITableViewController, XMLParserDelegate, RefreshP {
         let feedInfo = ListInfo()
         if feedInfo.startDownload(self.userData[2], userID: userID, checkChange: true, view: self) {
             // フィード接続　OK
-            let items = feedInfo.items
-            let feedData = try! NSKeyedArchiver.archivedData(withRootObject: items, requiringSecureCoding: false)
+            let udItems = feedInfo.items
+            self.items = udItems
+            let feedData = try! NSKeyedArchiver.archivedData(withRootObject: udItems, requiringSecureCoding: false)
             
             let userDB = realm?.objects(RealmDB.self).filter("userID == '\(self.userID!)'")
             
@@ -86,6 +86,7 @@ class ListViewController: UITableViewController, XMLParserDelegate, RefreshP {
             self.realmDB?.userID = self.userID
             
             let realm = try! Realm()
+            var number = 0
             try! realm.write {
                 for realmItem in self.realmDB!.items {
                     var check = false
@@ -96,9 +97,23 @@ class ListViewController: UITableViewController, XMLParserDelegate, RefreshP {
                         }
                     }
                     if (!check) {
-                        userDB![0].items.append(realmItem)
+                        //userDB![0].items.append(realmItem)
+                        userDB![0].items.insert(realmItem, at: number)
+                        number += 1
                     }
                 }
+            }
+            
+            self.items = [Item]()
+            for item in userDB![0].items {
+                let ob = Item()
+                ob.title = item.title
+                ob.link = item.link
+                ob.image = URL(string: item.image ?? "")
+                let url = URL(string: item.requestData!)
+                ob.requestData = URLRequest(url: url!)
+                
+                self.items.append(ob)
             }
             
             // 登録ユーザーフィード情報

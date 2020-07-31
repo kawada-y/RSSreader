@@ -21,6 +21,7 @@ class RealmDB: Object {
 
 class ItemDB: Object {
     @objc dynamic var title: String?
+    //@objc dynamic var date: Date?
     @objc dynamic var link: String?
     @objc dynamic var image: String?
     @objc dynamic var requestData: String?

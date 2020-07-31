@@ -32,6 +32,8 @@ class ListInfo: ViewController, XMLParserDelegate {
     var userID = ""
     var checkChange: Bool!
     
+    let dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+    
     func startDownload(_ selectfeed: String, userID: String, checkChange: Bool, view: UIViewController?) -> Bool {
         print("startDownload")
         print(selectfeed)
@@ -107,6 +109,18 @@ class ListInfo: ViewController, XMLParserDelegate {
             }
         case "item": self.items.append(self.item!)
             realmDB?.items.append(self.itemDB!)
+//        case "dc:date": let str = currentString     // 例　2020-07-31T10:20:04+09:00
+//            let dateStr = str[str.startIndex...str.index(str.startIndex, offsetBy: 18)]
+//
+//            let formatter: DateFormatter = DateFormatter()
+//            formatter.calendar = Calendar(identifier: .gregorian)
+//            formatter.dateFormat = dateFormat
+//            self.itemDB?.date = formatter.date(from: String(dateStr))
+//
+//
+//            print(str)
+//            print(self.itemDB?.date?.description)
+            
         case "content:encoded":
             guard let range = currentString.range(of: "<img src=") else { return }
             let start = currentString.index(range.lowerBound, offsetBy: 10)
